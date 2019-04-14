@@ -1,0 +1,1627 @@
+<!doctype html >
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" class="">
+<head>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ========= Meta Tags ========= -->
+<!-- PWA settings -->
+    <script>
+    function toHash(str){var hash=5381,i=str.length;while(i){hash=hash*33^str.charCodeAt(--i)}return hash>>>0}
+    var cacheKey = '1460846981~0ac84338~rooms~~false~desktop:::PAGES_SHORT_CACHE:::1555277704000';
+    var hashedCacheKey = cacheKey ? toHash(cacheKey) : '';
+    </script>
+    <script>
+        (function(global){
+    const cacheKey = global.cacheKey;
+    const isOffline = ('onLine' in navigator) && (navigator.onLine === false);
+    const hasServiceWorkerSupport = 'serviceWorker' in navigator;
+    if(isOffline) {
+        console.log('offline mode');
+    }
+    if(!hasServiceWorkerSupport){
+        console.log('service worker is not supported');
+    }
+    if (hasServiceWorkerSupport && !isOffline) {
+
+        window.addEventListener('load', function() {
+            const serviceWorkerPath = '/runtime-service-worker.js?v=1';
+            navigator.serviceWorker.register(serviceWorkerPath, { scope: './' }).then(function(registration) {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                checkCacheKey().then(function(result) {
+                    if(result && result.newKey) {
+                        // stale version
+                        console.log('stale version, current key:', cacheKey, ';;; new key:', result.newKey);
+                        messageServiceWorker({ command: 'deletePagesCache'});
+                    }
+                });
+            }, function(err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+            }).catch(function(err) {
+                console.log(err)
+            });
+        });
+
+        // helper function to refresh the page
+        var refreshPage = (function(){
+            var refreshing;
+            return function(){
+                if (refreshing) return;
+                // prevent multiple refreshes
+                var refreshkey = 'refreshed' + location.href;
+                var prevRefresh = localStorage.getItem(refreshkey);
+                if(prevRefresh) {
+                    localStorage.removeItem(refreshkey);
+                    if((Date.now() - prevRefresh) < 30000) {
+                        return; // dont go into a refresh loop
+                    }
+                }
+                refreshing = true;
+                localStorage.setItem(refreshkey, Date.now());
+                console.log('refereshing page');
+                window.location.reload();
+            }
+        }())
+
+        // checks the updated cache key
+        function checkCacheKey() {
+            var baseUrl = '/_dm/s/rt/actions/cacheKey';
+            const uri = location.pathname;
+            var cacheKeyUrl = baseUrl + (baseUrl.indexOf('?') > -1 ? '&' : '?') + 'skip_sw_cache&uri=' + encodeURIComponent(uri);
+            return fetch(cacheKeyUrl)
+            .then(function(resp) {
+                return (resp && resp.json) ? resp.json() : {};
+            })
+            .then(function(cacheObj) {
+                if(cacheObj && cacheObj.value) {
+                    if(cacheObj.value !== cacheKey) {
+                        // stale version
+                        return { newKey: cacheObj.value };
+                    }
+                }
+            })
+            .catch(function(err) {
+                return {};
+            });
+        }
+
+        function messageServiceWorker(data) {
+            return new Promise(function(resolve, reject) {
+                if(navigator.serviceWorker.controller) {
+                    var worker = navigator.serviceWorker.controller;
+                    var messageChannel = new MessageChannel();
+                    messageChannel.port1.onmessage = replyHandler;
+                    worker.postMessage(data, [messageChannel.port2]);
+                    function replyHandler (event) {
+                        resolve(event.data);
+                    }
+                } else {
+                    resolve();
+                }
+            })
+        }
+    }
+}(window))</script>
+    <!-- Add manifest -->
+    <!-- End PWA settings -->
+    
+
+<meta http-equiv="Content-type" content="text/html;charset=utf-8">
+<meta charset="utf-8">
+
+<link rel="canonical" href="rooms.html">
+
+<meta id="view" name="viewport"
+      content=", initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover"/>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>ALGEMENE INFORMATIE
+</title>
+
+<!--Add favorites icons-->
+
+<link rel="icon" type="image/x-icon" href="favicon_d1_res.ico"/>
+
+<!-- End favorite icons -->
+
+
+
+
+<!-- render the required CSS and JS in the head section -->
+<script>
+
+    if (!window.requestIdleCallback) {
+        window.requestIdleCallback = function (fn) {
+            setTimeout(fn, 0);
+        }
+    }
+
+    function loadCSS(link) {
+        var urlParams = new URLSearchParams(window.location.search);
+        var noCSS = !!urlParams.get('nocss');
+        var cssTimeout = urlParams.get('cssTimeout') || 0;
+
+        if (noCSS) {
+            return;
+        }
+        requestIdleCallback(function () {
+            window.setTimeout(function () {
+                link.onload = null;
+                link.rel = 'stylesheet';
+                link.type = 'text/css'
+            }, parseInt(cssTimeout, 10));
+        });
+    }
+
+</script>
+<script>
+(function(n){"use strict";if(!n.l){n.l=function(){}}var o=loadCSS.t={};o.o=function(){var l;try{l=n.document.createElement("link").relList.supports("preload")}catch(e){l=false}return function(){return l}}();o.i=function(e){var l=e.media||"all";function enableStylesheet(){if(e.addEventListener){e.removeEventListener("load",enableStylesheet)}else if(e.attachEvent){e.detachEvent("onload",enableStylesheet)}e.setAttribute("onload",null);e.media=l}if(e.addEventListener){e.addEventListener("load",enableStylesheet)}else if(e.attachEvent){e.attachEvent("onload",enableStylesheet)}setTimeout(function(){e.rel="stylesheet";e.media="only x"});setTimeout(enableStylesheet,3e3)};o.s=function(){if(o.o()){return}var e=n.document.getElementsByTagName("link");for(var l=0;l<e.length;l++){var t=e[l];if(t.rel==="preload"&&t.getAttribute("as")==="style"&&!t.getAttribute("data-loadcss")){t.setAttribute("data-loadcss",true);o.i(t)}}};if(!o.o()){o.s();var e=n.setInterval(o.s,500);if(n.addEventListener){n.addEventListener("load",function(){o.s();n.clearInterval(e)})}else if(n.attachEvent){n.attachEvent("onload",function(){o.s();n.clearInterval(e)})}}if(typeof exports!=="undefined"){exports.l=loadCSS}else{n.l=loadCSS}})(typeof global!=="undefined"?global:this);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ========= CSS Section ========= -->
+<!-- Foundation CSS -->
+<link rel="stylesheet" type="text/css" href="_dm/s/rt/dist/css/d-css-foundation.min-version=2019-04-14T09_40_05.css" />
+
+
+<!-- Google Fonts Include -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic%7CContrail+One:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic%7CMontserrat:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic%7CCabin:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic%7CPacifico:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic%7CSource+Sans+Pro:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic%7COpen+Sans:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic%7CSource+Sans+Pro:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic&subset=latin-ext"  />
+
+<link type="text/css" rel="stylesheet" href="https://dd-cdn.multiscreensite.com/fonts/additional-fonts.css"  />
+
+
+<link rel="stylesheet" type="text/css" href="_dm/s/rt/dist/css/css-font-package.min-version=2019-04-14T09_40_05.css" />
+
+
+<!-- RT CSS Include d-css-runtime-desktop-one-package-new-->
+<link rel="stylesheet" type="text/css" href="_dm/s/rt/dist/css/d-css-runtime-desktop-one-package-new.min-version=2019-04-14T09_40_05.css" />
+
+<!-- End of RT CSS Include -->
+
+
+    
+        <link rel="stylesheet" type="text/css" href="_dm/s/rt/dist/css/d-css-editor-runtime-package.min-version=2019-04-14T09_40_05.css" />
+
+    
+
+
+
+<!-- This is populated in Ajax navigation -->
+<style id="pageAdditionalWidgetsCss" type="text/css">
+</style>
+
+
+
+
+<!-- Site CSS -->
+<link type="text/css" rel="stylesheet" href="https://irp-cdn.multiscreensite.com/0ac84338/files/0ac84338_1.min.css?v=2" id="siteGlobalCss" />
+
+
+<style id="customWidgetStyle" type="text/css">
+    
+    
+.widget-832a29 .accordion-wrapper{
+    list-style-type: none;
+    text-align:left;
+    overflow: hidden;
+    margin: 0;
+}
+
+.widget-832a29 .accordion-title{
+    display: flex;
+    align-items: center;
+}
+
+.widget-832a29 .title-text{
+    display: flex;
+    align-items: center;
+}
+
+.widget-832a29 .title-icon{
+    width: 30px;
+    fill: currentColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+#dm .widget-832a29 .accordion-title .title-text{
+    font-size: 16px;
+    font-weight: 600;
+    flex-grow: 1;
+}
+
+.widget-832a29 .section{
+    overflow:hidden;
+    transition:max-height 0.3s ease-out;
+    height:auto;
+    max-height:0;
+    font-size: 16px;
+}
+
+.widget-832a29 .expanded .section, [data-first-expanded='true'] .accordion-item:first-of-type .section {
+    max-height:30000px;
+}
+
+.widget-832a29 .section-inner{
+    padding: 18px 20px;
+}
+
+.widget-832a29 .section-inner ul{
+    padding-left: 40px;
+    list-style-type: disc;
+    list-style-position: outside;
+}
+
+.widget-832a29 .arrow{
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-shrink: 0;
+    cursor: pointer;
+    
+}
+
+.widget-832a29 .arrow .close{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/* plus and minus signs animation*/
+.widget-832a29 .vertical {
+    transition: all 0.5s ease-in-out;
+    transform: rotate(-90deg);
+    position: absolute;
+    background-color: #000;
+    background-color: currentColor;
+    width: 10%;
+    height: 100%;
+    left: 50%;
+    margin-left: -5%;
+    top: 50%;
+    margin-top: -50%;
+}
+.widget-832a29 .horizontal {
+    transition: all 0.5s ease-in-out;
+    transform: rotate(-90deg);
+    background-color: #000;
+    background-color: currentColor;
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    left: 50%;
+    margin-left: -50%;
+    top: 50%;
+    margin-top: -5%;
+    opacity: 1;
+}
+
+  
+.widget-832a29 .expanded .vertical,  [data-first-expanded='true'] .accordion-item:first-of-type .vertical{
+    transform: rotate(90deg);
+}
+
+.widget-832a29 .expanded .horizontal,  [data-first-expanded='true'] .accordion-item:first-of-type .horizontal{
+    transform: rotate(90deg);
+    opacity: 0;
+}
+
+
+/* Layout 1 */
+
+.widget-832a29 .plusMinus .accordion-title{
+    padding: 10px 20px 20px 20px;
+    justify-content: space-between;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.widget-832a29 .plusMinus .accordion-title .title-text{
+    margin: 0;
+}
+
+
+.widget-832a29 .plusMinus .arrow-wrapper{
+     margin-left:15px;
+}
+
+.widget-832a29 .plusMinus .arrow {
+    position: relative;
+    width: 15px;
+    height: 15px;
+}
+
+.widget-832a29 .plusMinus  .section-inner{
+   
+    border-bottom: solid 1px #e1e1e1;
+}
+
+.widget-832a29 .plusMinus  .accordion-item:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+
+
+/* Layout 2 */
+.widget-832a29 .borderedPlus{
+    border: solid 1px #e1e1e1;
+    border-bottom: none;
+    
+}
+
+.widget-832a29 .borderedPlus .accordion-title{
+    padding: 18px 20px;
+    border-bottom: solid 1px #e1e1e1;
+    background: #f2f2f2;
+    justify-content: space-between;
+}
+
+.widget-832a29 .borderedPlus .accordion-title .title-text{
+    margin: 0;
+}
+
+.widget-832a29 .borderedPlus  .section-inner{
+   
+    border-bottom: solid 1px #e1e1e1;
+}
+
+.widget-832a29 .borderedPlus .arrow-wrapper{
+     margin-left:15px;
+}
+
+.widget-832a29 .borderedPlus .arrow {
+    position: relative;
+    width: 15px;
+    height: 15px;
+}
+
+/* Layout 3 */
+.widget-832a29 .fullBorder{
+    border: solid 1px #e1e1e1;
+    border-bottom: none;
+    
+}
+.widget-832a29 .fullBorder .accordion-title{
+    padding: 18px 20px;
+    border-bottom: solid 1px #e1e1e1;
+    justify-content: space-between;
+}
+
+.widget-832a29 .fullBorder .accordion-title .title-text{
+    margin: 0;
+}
+
+.widget-832a29 .fullBorder  .section-inner{
+   
+    border-bottom: solid 1px #e1e1e1;
+    background: #f2f2f2;
+}
+
+
+.widget-832a29 .fullBorder .arrow {
+    width: 22px;
+    height: 22px;
+}
+
+.widget-832a29 .fullBorder .expanded .arrow, .fullBorder[data-first-expanded='true'] .accordion-item:first-of-type .arrow{
+    transform: rotate(180deg);
+}
+
+
+/* Layout 4 */
+
+.widget-832a29 .roundedIcon .accordion-title{
+    justify-content: space-between;
+    padding: 18px 20px;
+    background: #f2f2f2;
+}
+
+.widget-832a29 .roundedIcon .accordion-title .title-text{
+    margin: 0;
+}
+
+
+
+.widget-832a29 .roundedIcon .arrow-wrapper{
+    margin-right: 8px;
+}
+
+.widget-832a29 .roundedIcon .arrow {
+    width: 22px;
+    height: 22px;
+}
+
+.widget-832a29 .roundedIcon .expanded .arrow, .roundedIcon[data-first-expanded='true'] .accordion-item:first-of-type .arrow{
+    transform: rotate(180deg);
+}
+
+.widget-832a29 .roundedIcon  .accordion-item:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.widget-832a29 .roundedIcon .arrow-wrapper{
+    border-radius: 50%;
+    padding: 8px;
+    background-color: #000
+}
+
+.widget-832a29 .roundedIcon .arrow-wrapper .arrow{
+    width: 20px;
+    height: 20px;
+}
+
+.widget-832a29 .roundedIcon .arrow-wrapper .close{
+    fill: #e3e3e3;
+}
+
+    
+
+
+/* Layout 5 */
+
+.widget-832a29 .leftIcons .accordion-title{
+    justify-content: space-between;
+    padding: 18px 20px;
+    background: #f2f2f2;
+}
+
+.widget-832a29 .leftIcons .accordion-title .title-text{
+    margin: 0;
+}
+
+
+
+.widget-832a29 .leftIcons .arrow-wrapper{
+    margin-right: 8px;
+}
+
+.widget-832a29 .leftIcons .arrow {
+    width: 22px;
+    height: 22px;
+}
+
+.widget-832a29 .leftIcons .expanded .arrow, .leftIcons[data-first-expanded='true'] .accordion-item:first-of-type .arrow{
+    transform: rotate(180deg);
+}
+
+.widget-832a29 .leftIcons  .accordion-item:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.widget-832a29 .leftIcons .title-icon{
+    width: 22px;
+    margin-right: 10px;
+}
+
+.widget-832a29 .leftIcons .title-icon svg{
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Layout 6 */
+
+.widget-832a29 .cleanLayout .accordion-title{
+    justify-content: flex-end;
+}
+
+.widget-832a29 .cleanLayout .accordion-title .title-text{
+    order: 2;
+    margin: 10px 0;
+    padding-left: 16px;
+}
+
+.widget-832a29 .cleanLayout .arrow {
+    order: 1;
+    width: 22px;
+    height: 22px;
+}
+
+.widget-832a29 .cleanLayout .expanded .arrow, .cleanLayout[data-first-expanded='true'] .accordion-item:first-of-type .arrow{
+    transform: rotate(90deg);
+}
+
+.widget-832a29 .cleanLayout .section-inner{
+    padding: 0 20px 0 0;
+}
+
+    
+</style>
+<style id="innerPagesStyle" type="text/css">
+    
+</style>
+
+<style id="additionalGlobalCss" type="text/css">
+</style>
+
+<style id="pagestyle" type="text/css">*#dm *.dmBody div.u_1397620337{line-height:150% !important;}
+*#dm *.dmBody div.u_1343724079{background-color:rgba(255, 255, 255, 1) !important;}
+*#dm *.dmBody div.u_1937628116 hr{color:rgb(56, 56, 56) !important;background:none !important;height:0px !important;background-color:transparent !important;background-size:initial !important;min-height:0px !important;border-color:currentColor !important;border-width:1px !important;border-top-style:solid !important;border-top-width:3px !important;}
+*#dm *.dmBody div.u_1679980195{line-height:150% !important;}
+*#dm *.dmBody div.u_1009168255{background-color:rgba(255, 255, 255, 1) !important;}
+*#dm *.dmBody div.u_1181141064{background-color:rgba(255, 255, 255, 1) !important;}
+*#dm *.dmBody div.u_1665096331 *.arrow-wrapper{background-color:rgba(0, 0, 0, 0) !important;border-radius:0% !important;-moz-border-radius:0% !important;-webkit-border-radius:0% !important;}
+*#dm *.dmBody *.u_1665096331 *.accordion-title *.arrow *.close{fill:rgba(44, 153, 255, 1) !important;background-color:rgba(44, 153, 255, 1) !important;}
+*#dm *.dmBody *.u_1665096331 *.accordion-title *.horizontal{fill:rgba(44, 153, 255, 1) !important;background-color:rgba(44, 153, 255, 1) !important;}
+*#dm *.dmBody *.u_1665096331 *.accordion-title *.vertical{fill:rgba(44, 153, 255, 1) !important;background-color:rgba(44, 153, 255, 1) !important;}
+*#dm *.dmBody div.u_1665096331 *.accordion-title{color:rgba(40, 40, 40, 1) !important;border-style:solid !important;border-width:0px !important;border-bottom-style:solid !important;border-bottom-color:rgba(194, 222, 255, 1) !important;border-bottom-width:0px !important;font-weight:normal !important;}
+*#dm *.dmBody div.u_1665096331 *.title-text{color:rgba(40, 40, 40, 1) !important;font-weight:normal !important;}
+*#dm *.dmBody div.u_1302041373{background-color:rgba(255, 255, 255, 1) !important;}
+*#dm *.dmBody div.u_1665096331 *.accordion-description *.section-inner{color:rgba(68, 68, 68, 1) !important;}
+*#dm *.dmBody nav.u_1076825896{color:black !important;}
+*#dm *.dmBody div.u_1812153816{background-repeat:no-repeat !important;background-image:url('https://irp-cdn.multiscreensite.com/0ac84338/dms3rep/multi/unnamed+(2)-6b5aada1.jpg') !important;}
+
+</style>
+
+<style id="pagestyleDevice" type="text/css">*#dm *.dmBody div.u_1812153816{background-repeat:no-repeat !important;background-image:url('https://irp-cdn.multiscreensite.com/0ac84338/dms3rep/multi/desktop/unnamed+(2)-6b5aada1.jpg') !important;}
+@media all and (min-width:1920px), all and (-webkit-min-device-pixel-ratio: 1.5), all and (min--moz-device-pixel-ratio: 1.5), all and (-o-min-device-pixel-ratio: 3/2), all and (min-device-pixel-ratio: 1.5) {*#dm *.dmBody div.u_1812153816{background-repeat:no-repeat !important;background-image:url('https://irp-cdn.multiscreensite.com/0ac84338/dms3rep/multi/background/unnamed+(2)-6b5aada1.jpg') !important;}
+}
+*#dm *.dmBody h1.u_1649601167{display:block !important;float:none !important;top:0px !important;left:0 !important;width:100% !important;position:relative !important;height:auto !important;padding-top:2px !important;padding-left:0px !important;padding-bottom:2px !important;margin-right:auto !important;margin-left:auto !important;max-width:100% !important;margin-top:8px !important;margin-bottom:8px !important;padding-right:0px !important;min-width:0 !important;text-align:center !important;}
+*#dm *.dmBody div.u_1447397161{float:none !important;top:0px !important;left:0 !important;width:100% !important;position:relative !important;height:auto !important;padding-top:2px !important;padding-left:0px !important;padding-bottom:2px !important;margin-right:auto !important;margin-left:auto !important;max-width:100% !important;margin-top:0 !important;margin-bottom:0 !important;padding-right:0px !important;min-width:0 !important;text-align:left !important;}
+*#dm *.dmBody div.u_1937628116{width:99px !important;display:block !important;float:none !important;top:0px !important;left:0 !important;position:relative !important;height:auto !important;padding-top:0px !important;padding-left:0px !important;padding-bottom:0px !important;margin-right:auto !important;margin-left:auto !important;max-width:calc(100% - 430px) !important;margin-top:7px !important;margin-bottom:0px !important;padding-right:0px !important;min-width:25px !important;text-align:center !important;}
+*#dm *.dmBody div.u_1397620337{display:block !important;float:none !important;top:0px !important;left:0 !important;width:100% !important;position:relative !important;height:auto !important;padding-top:2px !important;padding-left:0px !important;padding-bottom:2px !important;margin-right:auto !important;margin-left:auto !important;max-width:calc(100% - 0px) !important;margin-top:15px !important;margin-bottom:8px !important;padding-right:0px !important;min-width:25px !important;text-align:center !important;}
+*#dm *.dmBody div.u_1343724079{float:none !important;top:0px !important;left:0 !important;width:100% !important;position:relative !important;height:auto !important;padding-top:70px !important;padding-left:40px !important;padding-bottom:70px !important;max-width:none !important;padding-right:40px !important;min-width:0 !important;text-align:center !important;}
+*#dm *.dmBody h1.u_1794451590{display:block !important;float:none !important;top:0px !important;left:0 !important;width:100% !important;position:relative !important;height:auto !important;padding-top:2px !important;padding-left:0px !important;padding-bottom:2px !important;margin-right:auto !important;margin-left:auto !important;max-width:100% !important;margin-top:8px !important;margin-bottom:8px !important;padding-right:0px !important;min-width:0 !important;text-align:center !important;}
+*#dm *.dmBody h2.u_1794451590{display:block !important;float:none !important;top:0px !important;left:0 !important;width:100% !important;position:relative !important;height:auto !important;padding-top:2px !important;padding-left:0px !important;padding-bottom:2px !important;margin-right:auto !important;margin-left:auto !important;max-width:100% !important;margin-top:8px !important;margin-bottom:8px !important;padding-right:0px !important;min-width:0 !important;text-align:center !important;}
+*#dm *.dmBody div.u_1679980195{display:block !important;float:none !important;top:0px !important;left:0 !important;width:100% !important;position:relative !important;height:auto !important;padding-top:2px !important;padding-left:0px !important;padding-bottom:2px !important;margin-right:auto !important;margin-left:auto !important;max-width:calc(100% - 0px) !important;margin-top:15px !important;margin-bottom:8px !important;padding-right:0px !important;min-width:25px !important;text-align:center !important;}
+*#dm *.dmBody div.u_1009168255{float:none !important;top:0px !important;left:0 !important;width:100% !important;position:relative !important;height:auto !important;padding-top:70px !important;padding-left:40px !important;padding-bottom:70px !important;margin-right:auto !important;margin-left:auto !important;max-width:none !important;margin-top:0px !important;margin-bottom:0px !important;padding-right:40px !important;min-width:0 !important;text-align:center !important;}
+*#dm *.dmBody h1.u_1654400661{display:block !important;float:none !important;top:0px !important;left:0 !important;width:100% !important;position:relative !important;height:auto !important;padding-top:2px !important;padding-left:0px !important;padding-bottom:2px !important;margin-right:auto !important;margin-left:auto !important;max-width:100% !important;margin-top:8px !important;margin-bottom:8px !important;padding-right:0px !important;min-width:0 !important;text-align:center !important;}
+*#dm *.dmBody h2.u_1654400661{display:block !important;float:none !important;top:0px !important;left:0 !important;width:100% !important;position:relative !important;height:auto !important;padding-top:2px !important;padding-left:0px !important;padding-bottom:2px !important;margin-right:auto !important;margin-left:auto !important;max-width:100% !important;margin-top:8px !important;margin-bottom:8px !important;padding-right:0px !important;min-width:0 !important;text-align:center !important;}
+*#dm *.dmBody div.u_1181141064{float:none !important;top:0px !important;left:0 !important;width:100% !important;position:relative !important;height:auto !important;padding-top:70px !important;padding-left:40px !important;padding-bottom:70px !important;margin-right:auto !important;margin-left:auto !important;max-width:none !important;margin-top:0px !important;margin-bottom:0px !important;padding-right:40px !important;min-width:0 !important;text-align:center !important;}
+*#dm *.dmBody div.u_1302041373{padding-top:50px !important;padding-bottom:50px !important;}
+*#dm *.dmBody *.u_1665096331 *.accordion-title *.arrow{width:28px !important;height:28px !important;}
+*#dm *.dmBody div.u_1665096331{float:none !important;top:0px !important;left:0 !important;width:100% !important;position:relative !important;height:auto !important;padding-top:0px !important;padding-left:0px !important;padding-bottom:0px !important;margin-right:auto !important;margin-left:auto !important;max-width:calc(100% - 0px) !important;margin-top:0px !important;margin-bottom:0px !important;padding-right:0px !important;min-width:25px !important;text-align:left !important;}
+*#dm *.dmBody div.u_1812153816{background-attachment:fixed !important;background-size:cover !important;padding-bottom:150px !important;padding-top:150px !important;background-repeat:no-repeat !important;}
+
+</style>
+
+
+
+
+<!--[if IE 7]><style>.fw-head.fw-logo img{max-width: 290px;}.dm_header .logo-div img{max-width: 290px;}</style><![endif]-->
+<!--[if IE 8]><style>.fw-head .fw-logo img{max-width: 290px;}.dm_header .logo-div img{max-width: 290px;}*#dm div.dmHeader{_height:90px;min-height:0px;}</style><![endif]-->
+
+<!-- ========= JS Section ========= -->
+
+<!-- Modernizr -->
+<script>
+    /* THIS FILE IS AUTO-GENERATED. SEE build/build-modernizr */
+
+/*! modernizr 3.5.0 (Custom Build) | MIT *
+ * https://modernizr.com/download/?-cssvwunit-flexbox-flexboxlegacy-flexboxtweener-flexwrap-passiveeventlisteners-supports-svg-setclasses-cssclassprefix:dm- !*/
+!function(e,t,n){function r(e,t){return typeof e===t}function s(){var e,t,n,s,o,i,a;for(var l in w)if(w.hasOwnProperty(l)){if(e=[],t=w[l],t.name&&(e.push(t.name.toLowerCase()),t.options&&t.options.aliases&&t.options.aliases.length))for(n=0;n<t.options.aliases.length;n++)e.push(t.options.aliases[n].toLowerCase());for(s=r(t.fn,"function")?t.fn():t.fn,o=0;o<e.length;o++)i=e[o],a=i.split("."),1===a.length?Modernizr[a[0]]=s:(!Modernizr[a[0]]||Modernizr[a[0]]instanceof Boolean||(Modernizr[a[0]]=new Boolean(Modernizr[a[0]])),Modernizr[a[0]][a[1]]=s),C.push((s?"":"no-")+a.join("-"))}}function o(e){var t=x.className,n=Modernizr._config.classPrefix||"";if(b&&(t=t.baseVal),Modernizr._config.enableJSClass){var r=new RegExp("(^|\\s)"+n+"no-js(\\s|$)");t=t.replace(r,"$1"+n+"js$2")}Modernizr._config.enableClasses&&(t+=" "+n+e.join(" "+n),b?x.className.baseVal=t:x.className=t)}function i(e,t){return!!~(""+e).indexOf(t)}function a(){return"function"!=typeof t.createElement?t.createElement(arguments[0]):b?t.createElementNS.call(t,"http://www.w3.org/2000/svg",arguments[0]):t.createElement.apply(t,arguments)}function l(){var e=t.body;return e||(e=a(b?"svg":"body"),e.fake=!0),e}function f(e,n,r,s){var o,i,f,u,d="modernizr",p=a("div"),c=l();if(parseInt(r,10))for(;r--;)f=a("div"),f.id=s?s[r]:d+(r+1),p.appendChild(f);return o=a("style"),o.type="text/css",o.id="s"+d,(c.fake?c:p).appendChild(o),c.appendChild(p),o.styleSheet?o.styleSheet.cssText=e:o.appendChild(t.createTextNode(e)),p.id=d,c.fake&&(c.style.background="",c.style.overflow="hidden",u=x.style.overflow,x.style.overflow="hidden",x.appendChild(c)),i=n(p,e),c.fake?(c.parentNode.removeChild(c),x.style.overflow=u,x.offsetHeight):p.parentNode.removeChild(p),!!i}function u(e){return e.replace(/([A-Z])/g,function(e,t){return"-"+t.toLowerCase()}).replace(/^ms-/,"-ms-")}function d(t,n,r){var s;if("getComputedStyle"in e){s=getComputedStyle.call(e,t,n);var o=e.console;if(null!==s)r&&(s=s.getPropertyValue(r));else if(o){var i=o.error?"error":"log";o[i].call(o,"getComputedStyle returning null, its possible modernizr test results are inaccurate")}}else s=!n&&t.currentStyle&&t.currentStyle[r];return s}function p(t,r){var s=t.length;if("CSS"in e&&"supports"in e.CSS){for(;s--;)if(e.CSS.supports(u(t[s]),r))return!0;return!1}if("CSSSupportsRule"in e){for(var o=[];s--;)o.push("("+u(t[s])+":"+r+")");return o=o.join(" or "),f("@supports ("+o+") { #modernizr { position: absolute; } }",function(e){return"absolute"==d(e,null,"position")})}return n}function c(e){return e.replace(/([a-z])-([a-z])/g,function(e,t,n){return t+n.toUpperCase()}).replace(/^-/,"")}function v(e,t,s,o){function l(){u&&(delete P.style,delete P.modElem)}if(o=r(o,"undefined")?!1:o,!r(s,"undefined")){var f=p(e,s);if(!r(f,"undefined"))return f}for(var u,d,v,m,g,y=["modernizr","tspan","samp"];!P.style&&y.length;)u=!0,P.modElem=a(y.shift()),P.style=P.modElem.style;for(v=e.length,d=0;v>d;d++)if(m=e[d],g=P.style[m],i(m,"-")&&(m=c(m)),P.style[m]!==n){if(o||r(s,"undefined"))return l(),"pfx"==t?m:!0;try{P.style[m]=s}catch(h){}if(P.style[m]!=g)return l(),"pfx"==t?m:!0}return l(),!1}function m(e,t){return function(){return e.apply(t,arguments)}}function g(e,t,n){var s;for(var o in e)if(e[o]in t)return n===!1?e[o]:(s=t[e[o]],r(s,"function")?m(s,n||t):s);return!1}function y(e,t,n,s,o){var i=e.charAt(0).toUpperCase()+e.slice(1),a=(e+" "+T.join(i+" ")+i).split(" ");return r(t,"string")||r(t,"undefined")?v(a,t,s,o):(a=(e+" "+z.join(i+" ")+i).split(" "),g(a,t,n))}function h(e,t,r){return y(e,n,n,t,r)}var w=[],S={_version:"3.5.0",_config:{classPrefix:"dm-",enableClasses:!0,enableJSClass:!0,usePrefixes:!0},_q:[],on:function(e,t){var n=this;setTimeout(function(){t(n[e])},0)},addTest:function(e,t,n){w.push({name:e,fn:t,options:n})},addAsyncTest:function(e){w.push({name:null,fn:e})}},Modernizr=function(){};Modernizr.prototype=S,Modernizr=new Modernizr;var C=[],x=t.documentElement,b="svg"===x.nodeName.toLowerCase();Modernizr.addTest("svg",!!t.createElementNS&&!!t.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect);var _="Moz O ms Webkit",T=S._config.usePrefixes?_.split(" "):[];S._cssomPrefixes=T;var E={elem:a("modernizr")};Modernizr._q.push(function(){delete E.elem});var P={style:E.elem.style};Modernizr._q.unshift(function(){delete P.style});var z=S._config.usePrefixes?_.toLowerCase().split(" "):[];S._domPrefixes=z,S.testAllProps=y,S.testAllProps=h,Modernizr.addTest("flexbox",h("flexBasis","1px",!0)),Modernizr.addTest("flexboxlegacy",h("boxDirection","reverse",!0)),Modernizr.addTest("flexboxtweener",h("flexAlign","end",!0)),Modernizr.addTest("flexwrap",h("flexWrap","wrap",!0));var N="CSS"in e&&"supports"in e.CSS,j="supportsCSS"in e;Modernizr.addTest("supports",N||j);var A=S.testStyles=f;A("#modernizr { width: 50vw; }",function(t){var n=parseInt(e.innerWidth/2,10),r=parseInt(d(t,null,"width"),10);Modernizr.addTest("cssvwunit",r==n)}),Modernizr.addTest("passiveeventlisteners",function(){var t=!1;try{var n=Object.defineProperty({},"passive",{get:function(){t=!0}});e.addEventListener("test",null,n)}catch(r){}return t}),s(),o(C),delete S.addTest,delete S.addAsyncTest;for(var k=0;k<Modernizr._q.length;k++)Modernizr._q[k]();e.Modernizr=Modernizr}(window,document);</script>
+
+<script>
+    var isWLR = true;
+</script>
+<!-- Custom Widgets js functions map -->
+<script>
+    window.customWidgetsFunctions = {};
+    window.customWidgetsStrings = {};
+</script>
+<script>
+    window.customWidgetsFunctions["832a29738c2b44fdb4e63369b1bf458a~50"] = function (element, data, api) {
+        
+
+$(element).find('[data-first-expanded="true"]').attr('data-first-expanded', 'false').find('.accordion-item').eq(0).addClass('expanded');
+
+$(element).off('click.toggle').on('click.toggle', '.accordion-title', function(){
+    if(data.config.collapseOthers){
+        $(this).parents('.accordion-item').siblings().removeClass('expanded');
+        // $(element).find('.accordion-item').not(this).removeClass('expanded');
+    }
+    $(this).parents('.accordion-item').toggleClass('expanded');
+});
+
+
+    };
+</script>
+<script type="text/javascript">
+
+    var version = "3.9.3";
+    var build = "2019-04-14T09_40_05";
+
+    function buildEditorParent() {
+        window.isMultiScreen = true;
+        window.editorParent = {};
+        window.previewParent = {};
+        window.assetsCacheQueryParam = "?version=2019-04-14T09_40_05";
+        try {
+            var _p = window.parent;
+            if (_p && _p.document && _p.$ && _p.$.dmfw) {
+                window.editorParent = _p;
+            }
+            else if (_p.isSitePreview) {
+                window.previewParent = _p;
+            }
+        } catch (e) {
+
+        }
+    }
+
+    buildEditorParent();
+
+
+</script>
+<!-- Load jQuery -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- End Load jQuery --><script>
+    window.cookiesNotificationMarkupPreview = 'null';
+</script>
+<!-- HEAD RT JS Include -->
+<script>
+    window.INSITE = window.INSITE || {};
+    window.INSITE.device = "desktop";
+    window.rtCommonProps = {};
+    rtCommonProps["rt.ajax.ajaxScriptsFix"] =true;
+    rtCommonProps["rt.pushnotifs.sslframe.encoded"] = 'aHR0cHM6Ly97c3ViZG9tYWlufS5wdXNoLW5vdGlmcy5jb20=';
+    rtCommonProps["facebook.accessToken"] = '126515034112906|8vv7JhnEegS8qz43fIOZjxGZReA';
+    rtCommonProps["performance.tabletPreview.removeScroll"] = 'false';
+    rtCommonProps["feature.flag.contactUsNewForm"] = 'true';
+    rtCommonProps["inlineEditGrid.snap"] =true;
+    rtCommonProps["popup.insite.cookie.ttl"] = '0.0';
+    rtCommonProps["rt.pushnotifs.force.button"] =true;
+    rtCommonProps["google.places.key"] = 'AIzaSyBAwUOqPUB1CU31yDztoZYaUE7sPv4ktEI';
+    rtCommonProps["common.mapbox.token"] = 'pk.eyJ1IjoiZGFubnliMTIzIiwiYSI6ImNqMGljZ256dzAwMDAycXBkdWxwbDgzeXYifQ.Ck5P-0NKPVKAZ6SH98gxxw';
+    rtCommonProps["common.mapbox.js.override"] =false;
+    rtCommonProps["common.opencage.token"] = '319e14f32bcce967ba55cd263478796d';
+    rtCommonProps["common.here.appId"] = 'iYvDjIQ2quyEu0rg0hLo';
+    rtCommonProps["common.here.appCode"] = '1hcIxLJcbybmtBYTD9Z1UA';
+    rtCommonProps["isCoverage.test"] =false;
+    rtCommonProps["ecommerce.ecwid.script"] = 'https://app.multiscreenstore.com/script.js';
+    rtCommonProps["feature.flag.mappy.kml"] =false;
+    rtCommonProps["feature.flag.lazy.photoGallery"]=false;
+    
+    rtCommonProps["common.mapsProvider"] = 'mapbox';
+    rtCommonProps['common.mapsProvider.version'] = '0.52.0';
+    rtCommonProps["common.geocodeProvider"] = 'here';
+    rtCommonProps['common.map.defaults.radiusSize'] = '1500';
+    rtCommonProps['common.map.defaults.radiusBg'] = 'rgba(255, 255, 255, 0.4)';
+    rtCommonProps['common.map.defaults.strokeColor'] = 'rgba(255, 255, 255, 1)';
+    rtCommonProps['common.map.defaults.strokeSize'] = '2';
+    rtCommonProps['server.for.resources'] = '';
+    rtCommonProps["feature.flag.lazy.widgets"] =false;
+    
+</script>
+<script src="_dm/s/rt/dist/scripts/d-js-runtime-one-package.min-version=2019-04-14T09_40_05.js" ></script>
+<!-- End of HEAD RT JS Include -->
+<script src="_dm/s/rt/dist/scripts/d-js-one-runtime-layouts-package.min-version=2019-04-14T09_40_05.js" ></script>
+<script src="_dm/s/rt/dist/scripts/d-js-one-runtime-layouts-desktop.min-version=2019-04-14T09_40_05.js" ></script>
+<script>jQuery.DM.updateWidthAndHeight();
+$(window).resize(function () {
+    jQuery.DM.updateWidth();
+    
+});
+$(window).bind("orientationchange", function (e) {
+    jQuery.DM.updateWidth();
+    jQuery.layoutManager.initLayout();
+    
+});
+$(document).resize(function () {
+    jQuery.DM.updateWidth();
+    
+});
+</script>
+
+
+
+
+<!-- End render the required css and JS in the head section -->
+
+
+
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+
+
+<!-- SYS- VVNfRElSRUNUX1BST0RVQ1RJT04= -->
+
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body id="dmRoot"  class="supportsFontIcons supportsFontIcons dmRoot dmDesktopBody fix-mobile-scrolling dmResellerSite dmLargeBody " style="padding:0;margin:0;"
+            >
+    
+
+
+        <div id="disabledImageZone" style="display:none;z-index:-1">
+            <style type="text/css">
+                #imageZone {
+                    position: absolute;
+                    margin: auto;
+                }
+
+                .coloumns {
+                    border-radius: 3px;
+                    background-color: rgb(249, 152, 13); /*border:1px solid #999;*/
+                    height: 18px;
+                    width: 6px;
+                    -webkit-animation-name: loader;
+                    -webkit-animation-duration: 1s;
+                    -webkit-animation-iteration-count: infinite;
+                    -webkit-animation-direction: linear;
+                    -moz-animation-name: loader;
+                    -moz-animation-duration: 1s;
+                    -moz-animation-iteration-count: infinite;
+                    -moz-animation-direction: linear;
+                    opacity: .25;
+                    -webkit-transform: scale(0.7);
+                    -webkit-transform-origin: 50% 180%;
+                    -moz-transform: scale(0.7);
+                    -moz-transform-origin: 50% 180%;
+                    position: absolute;
+                }
+
+                #coloumn1 {
+                    -webkit-transform: rotate(0deg);
+                    -webkit-animation-delay: -.914s;
+                    -moz-transform: rotate(0deg);
+                    -moz-animation-delay: -.914s;
+                }
+
+                #coloumn2 {
+                    -webkit-transform: rotate(30deg);
+                    -webkit-animation-delay: -.831s;
+                    -moz-transform: rotate(30deg);
+                    -moz-animation-delay: -.831s;
+                }
+
+                #coloumn3 {
+                    -webkit-transform: rotate(60deg);
+                    -webkit-animation-delay: -.747s;
+                    -moz-transform: rotate(60deg);
+                    -moz-animation-delay: -.747s;
+                }
+
+                #coloumn4 {
+                    -webkit-transform: rotate(90deg);
+                    -webkit-animation-delay: -.664s;
+                    -moz-transform: rotate(90deg);
+                    -moz-animation-delay: -.664s;
+                }
+
+                #coloumn5 {
+                    -webkit-transform: rotate(120deg);
+                    -webkit-animation-delay: -.581s;
+                    -moz-transform: rotate(120deg);
+                    -moz-animation-delay: -.581s;
+                }
+
+                #coloumn6 {
+                    -webkit-transform: rotate(150deg);
+                    -webkit-animation-delay: -.498s;
+                    -moz-transform: rotate(150deg);
+                    -moz-animation-delay: -.498s;
+                }
+
+                #coloumn7 {
+                    -webkit-transform: rotate(180deg);
+                    -webkit-animation-delay: -.415s;
+                    -moz-transform: rotate(180deg);
+                    -moz-animation-delay: -.415s;
+                }
+
+                #coloumn8 {
+                    -webkit-transform: rotate(210deg);
+                    -webkit-animation-delay: -.332s;
+                    -moz-transform: rotate(210deg);
+                    -moz-animation-delay: -.332s;
+                }
+
+                #coloumn9 {
+                    -webkit-transform: rotate(240deg);
+                    -webkit-animation-delay: -.249s;
+                    -moz-transform: rotate(240deg);
+                    -moz-animation-delay: -.249s;
+                }
+
+                #coloumn10 {
+                    -webkit-transform: rotate(270deg);
+                    -webkit-animation-delay: -.166s;
+                    -moz-transform: rotate(270deg);
+                    -moz-animation-delay: -.166s;
+                }
+
+                #coloumn11 {
+                    -webkit-transform: rotate(300deg);
+                    -webkit-animation-delay: -.083s;
+                    -moz-transform: rotate(300deg);
+                    -moz-animation-delay: -.083s;
+                }
+
+                #coloumn12 {
+                    -webkit-transform: rotate(330deg);
+                    -moz-transform: rotate(330deg);
+                }
+
+                @-webkit-keyframes loader {
+                    0% {
+                        opacity: 1;
+                    }
+                    100% {
+                        opacity: .25;
+                    }
+                }
+
+                @-moz-keyframes loader {
+                    0% {
+                        opacity: 1;
+                    }
+                    100% {
+                        opacity: .25;
+                    }
+                }
+            </style>
+            <div id='imageZone'>
+                <div id='coloumn1' class='coloumns'></div>
+                <div id='coloumn2' class='coloumns'></div>
+                <div id='coloumn3' class='coloumns'></div>
+                <div id='coloumn4' class='coloumns'></div>
+                <div id='coloumn5' class='coloumns'></div>
+                <div id='coloumn6' class='coloumns'></div>
+                <div id='coloumn7' class='coloumns'></div>
+                <div id='coloumn8' class='coloumns'></div>
+                <div id='coloumn9' class='coloumns'></div>
+                <div id='coloumn10' class='coloumns'></div>
+                <div id='coloumn11' class='coloumns'></div>
+                <div id='coloumn12' class='coloumns'></div>
+            </div>
+        </div>
+
+        <!-- ========= Site Content ========= -->
+        <div id="dm" class='dmwr'>
+            
+            <div class="dm_wrapper standard-var5 widgetStyle-3 standard">
+                 <div dmwrapped="true" id="1582363842" themewaschanged="true"> <div dmtemplateid="StandardLayoutMultiD" class="standardHeaderLayout dm-bfs dm-layout-sec hasAnimations hasStickyHeader inMiniHeaderMode dmPageBody d-page-1683814473 dmFreeHeader" id="dm-outer-wrapper" data-page-class="1683814473" data-buttonstyle="ROUND_SIDES" data-soch="true" data-background-size="cover" data-background-attachment="fixed" data-background-repeat="no-repeat" data-background-position="50% 0%" data-background-hide-inner="true" data-background-fullbleed="false" data-background-parallax-selector=".dmSectionParallex" data-background-parallax-speed="0.2"> <div id="dmStyle_outerContainer" class="dmOuter"> <div id="dmStyle_innerContainer" class="dmInner"> <div class="dmLayoutWrapper standard-var dmStandardDesktop"> <ul class="dmn dmLayoutNav hiddenNavPlaceHolder navPlaceHolder dmDisplay_None"></ul> 
+ <div> <div id="iscrollBody"> <div id="site_content"> <div class="dmHeaderContainer fHeader d-header-wrapper"> <div id="hcontainer" class="dmHeader p_hfcontainer u_hcontainer" freeheader="true" headerlayout="696" data-scrollable-target="body" data-scrollable-target-threshold="1" data-scroll-responder-id="1" preserve-sticky-header="true" logo-size-target="66%"> <div dm:templateorder="85" class="dmHeaderResp dmHeaderStack noSwitch" id="1709005236"> <div class="u_1787385040 dmRespRow dmDefaultListContentRow fullBleedChanged fullBleedMode" style="text-align:center" id="1787385040"> <div class="dmRespColsWrapper" id="1792198274"> <div class="u_1816683580 dmRespCol small-12 medium-12 large-12" id="1816683580"> <nav class="u_1076825896 effect-text-fill main-navigation unifiednav dmLinksMenu" role="navigation" layout-main="horizontal_nav_layout_5" layout-sub="submenu_horizontal_1" data-show-vertical-sub-items="HOVER" id="1076825896" dmle_extension="onelinksmenu" data-element-type="onelinksmenu" wr="true" data-logo-src="" icon="true" surround="true" adwords="" data-from-nav="true" data-sub-nav="true" data-nav-structure="HORIZONTAL" data-items="-1" custom-li-class="" custom-ul-class="" custom-a-class="" custom-inner-ul-class="" custom-nested-inner-ul-class="" custom-span-class="" navigation-id="unifiedNav" data-links-level="0" data-divider="SLASH" is-build-your-own="false"> <ul class="unifiednav__container  "> <li class=" unifiednav__item-wrap "> <a href="index.html" class="unifiednav__item  dmUDNavigationItem_00  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         HOME
+        ">HOME<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li class=" unifiednav__item-wrap "> <a href="rooms.html" class="unifiednav__item  dmNavItemSelected  dmUDNavigationItem_010101723297  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         ALGEMENE INFORMATIE
+        ">ALGEMENE INFORMATIE<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li class=" unifiednav__item-wrap "> <a href="spa.html" class="unifiednav__item  dmUDNavigationItem_010101661768  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         PLACES
+        ">PLACES<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li class=" unifiednav__item-wrap "> <a href="transport.html" class="unifiednav__item  dmUDNavigationItem_010101925404  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         TRANSPORT
+        ">TRANSPORT<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li class=" unifiednav__item-wrap "> <a href="location.html" class="unifiednav__item  dmUDNavigationItem_010101567797  unifiednav__item_has-sub-nav" target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         FOOD
+        ">FOOD<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+ <ul class="unifiednav__container unifiednav__container_sub-nav" data-depth="0"> <li class=" unifiednav__item-wrap "> <a href="restaurant.html" class="unifiednav__item  dmUDNavigationItem_010101106117  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+           RESTAURANTS
+          ">RESTAURANTS<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+ <li class=" unifiednav__item-wrap "> <a href="location.html#contactus" class="unifiednav__item  dmUDNavigationItem_01010168106  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+           FAST FOOD
+          ">FAST FOOD<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+</ul> 
+</li> 
+ <li class=" unifiednav__item-wrap "> <a href="sports.html" class="unifiednav__item  dmUDNavigationItem_010101858992  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         SPORTS
+        ">SPORTS<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li class=" unifiednav__item-wrap "> <a href="movies-tv.html" class="unifiednav__item  dmUDNavigationItem_01010114917  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         MOVIES/TV
+        ">MOVIES/TV<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li class=" unifiednav__item-wrap "> <a href="more-information.html" class="unifiednav__item  dmUDNavigationItem_010101181147  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         CONTACT/INFO
+        ">CONTACT/INFO<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+</ul> 
+</nav> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="stickyHeaderSpacer" id="stickyHeaderSpacer" data-new="true"></div> 
+ <div class="dmRespRow dmRespRowStable dmRespRowNoPadding dmPageTitleRow "> <div class="dmRespColsWrapper"> <div class="large-12 dmRespCol"> <div id="innerBar" class="innerBar lineInnerBar dmDisplay_None"> <div class="titleLine display_None"><hr/></div> 
+<!-- Page title is hidden in css for new responsive sites. It is left here only so we don't break old sites. Don't copy it to new layouts --> <div id="pageTitleText"> <div class="innerPageTitle">ALGEMENE INFORMATIE</div> 
+</div> 
+ <div class="titleLine display_None"><hr/></div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div dmwrapped="true" id="1582363842" themewaschanged="true" class="dmBody u_dmStyle_template_rooms"> <div id="allWrapper" class="allWrapper"><!-- navigation placeholders --> <div id="dm_content" class="dmContent"> <div dm:templateorder="100" class="dmAboutusRespTmpl mainBorder" id="1683814473"> <div class="innerPageTmplBox dmRespRowsWrapper" id="1396310947"> <div class="dmRespRow u_1812153816 dmSectionParallaxNew" style="text-align: center;" id="1812153816"> <div class="dmRespColsWrapper" id="1468424395"> <div class="dmRespCol small-12 medium-12 large-12 u_1353811095" id="1353811095"></div> 
+</div> 
+</div> 
+ <div class="dmRespRow" style="text-align: center;" id="1655462666"> <div class="dmRespColsWrapper" id="1884708595"> <div class="dmRespCol small-12 medium-12 large-12" id="1514278081"> <h1 class="u_1649601167 dmNewParagraph" id="1649601167" data-uialign="center" data-element-type="paragraph"><span style="font-weight: 400; font-family: 'Contrail One';">Algemene Informatie</span></h1> <div class="u_1447397161 dmNewParagraph" data-dmtmpl="true" id="1447397161" data-uialign="center" style="transition: opacity 1s ease-in-out; display: block;"><div style=";text-align: center;">Algemene informatie van onze reis.</div></div></div> 
+</div> 
+</div> 
+ <div class="u_1343724079 dmRespRow" style="text-align: center;" id="1343724079"> <div class="dmRespColsWrapper" id="1498689617"> <div class="dmRespCol small-12 medium-12 large-12" id="1897310251"> <div class="u_1937628116 dmDividerWrapper clearfix" id="1937628116" layout="divider-style-1" data-element-type="dDividerId"><hr class="dmDivider" style="min-height: 2px; border:none; background:grey" id="1619685626"/></div> 
+ <div class="u_1397620337 dmNewParagraph" data-dmtmpl="true" id="1397620337" data-uialign="center" style="transition: opacity 1s ease-in-out; display: block;"><font style=""></font><span style="color: rgb(56, 56, 56);">Op deze pagina kunt u alle (belangerijke) informatie over onze reis vinden.</span><div><font style="color: rgb(56, 56, 56);"></font></div><div><span style="color: rgb(56, 56, 56);"><br/></span></div><div><span style="color: rgb(56, 56, 56);">Hierbij wat puntjes voor de leerlingen:</span></div><div><ul class="innerList defaultList"><li><span style="color: rgb(56, 56, 56);">Zorg ervoor dat je overal en altijd op tijd bent. New York is een grote stad en we willen elkaar niet kwijtraken en/of misverstanden cre&euml;ren wanneer dat niet nodig is.</span></li><li><span style="color: rgb(56, 56, 56);">Ga nooit alleen ergens naartoe. In geval van nood bellen naar een van de nummers die je van tevoren krijgt of neem een taxi. Aarzel niet, <i>better safe than sorry</i>.</span></li></ul></div></div></div> 
+</div> 
+</div> 
+ <div class="u_1009168255 dmRespRow" style="text-align: center;" id="1009168255"> <div class="dmRespColsWrapper" id="1468640154"> <div class="dmRespCol small-12 medium-12 large-12" id="1995895019"> <h2 class="dmNewParagraph u_1794451590" id="1794451590" style="transition: opacity 1s ease-in-out;" data-uialign="center" data-element-type="paragraph"><div><span style="" class=" lh-1"><font style="color: rgb(56, 56, 56);"><span style="font-weight: 500;">Onze Vluchten</span></font></span></div><font></font></h2> <div class="u_1679980195 dmNewParagraph" data-dmtmpl="true" id="1679980195" data-uialign="center" style="transition: opacity 1s ease-in-out; display: block;"><font style=""></font><span style="color: rgb(56, 56, 56);">Als wij naar New York gaan, moeten we uiteraard met het vliegtuig. Wij zullen onderweg naar New York's JFK International Airport en terug naar Schiphol de volgende vluchten belemmeren:</span><div><font style="color: rgb(56, 56, 56);"></font></div><div><span style="color: rgb(56, 56, 56);">Op woendag 5 juni zullen wij op de heenweg vanaf Schiphol het personeel van Delta Airlines gekmaken op vlucht DL049.</span></div><div><span style="color: rgb(56, 56, 56);">Op maandag 10 juni komen wij rond 11:35 in Nederland aan met KLM vlucht KL644 omdat het personeel van Delta het niet zag zitten om ons nog een keer mee te nemen.</span></div><div><span style="color: rgb(56, 56, 56);">U kunt op de dag van onze vluc</span><font style="color: rgb(0, 0, 0);">hten</font><font style=""><font style=""><font style=""><font style=""><font style=""><font style=""><font style=""><font style=""> <font style="color: rgb(0, 0, 0);"></font> 
+<a href="https://www.google.com/search?q=dl+049&oq=DL+049&aqs=chrome.0.0l6.342j0j7&sourceid=chrome&ie=UTF-8" runtime_url="https://www.google.com/search?q=dl+049&oq=DL+049&aqs=chrome.0.0l6.342j0j7&sourceid=chrome&ie=UTF-8" target="_blank" style="color: rgb(0, 19, 255);">hier onze vlucht naar New York</a></font><font style=""> <font style="color: rgb(56, 56, 56);">tracken en</font> 
+<a href="https://www.google.com/search?ei=cl5lXKiRK8PDwAK5r4yIDA&q=kl644&oq=kl644&gs_l=psy-ab.3..0l4j0i30l6.67481.69593..70585...0.0..0.58.216.5......0....1..gws-wiz.......0i71j0i67.gZQmICnkDd0r" runtime_url="https://www.google.com/search?ei=cl5lXKiRK8PDwAK5r4yIDA&q=kl644&oq=kl644&gs_l=psy-ab.3..0l4j0i30l6.67481.69593..70585...0.0..0.58.216.5......0....1..gws-wiz.......0i71j0i67.gZQmICnkDd0r" target="_blank" style=""><font style="color: rgb(0, 19, 255);">hier onze vlucht terug naar Amsterdam</font></a><font style="color: rgb(56, 56, 56);">.</font></font></font></font></font></font></font></font></font></div><div><span style="color: rgb(56, 56, 56);"><br/></span></div></div></div> 
+</div> 
+</div> 
+ <div class="u_1181141064 dmRespRow" style="text-align: center;" id="1181141064"> <div class="dmRespColsWrapper" id="1548034999"> <div class="dmRespCol small-12 medium-12 large-12" id="1095228078"> <span id="1761893936"></span> 
+ <h2 class="dmNewParagraph u_1654400661" id="1654400661" style="transition: opacity 1s ease-in-out;" data-uialign="center" data-element-type="paragraph"><div><span style="" class=" lh-1"><font style="color: rgb(56, 56, 56);"><span style="font-weight: 500;">Programma</span></font></span></div><font></font></h2></div> 
+</div> 
+</div> 
+ <div class="dmRespRow u_1302041373" style="text-align: center;" id="1302041373"> <div class="dmRespColsWrapper" id="1700288121"> <div class="dmRespCol small-12 medium-12 large-12 u_1038763740" id="1038763740"> <div class="u_1665096331 widget-832a29 dmCustomWidget" id="1665096331" dmle_extension="custom_extension" data-element-type="custom_extension" wr="false" icon="false" surround="false" data-widget-id="832a29738c2b44fdb4e63369b1bf458a" data-widget-version="50" data-widget-config="eyJpdGVtcyI6W3sidGl0bGUiOiIxNSBBUFJJTCAyMDE5IiwiZGVzY3JpcHRpb24iOiI8dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT5PdWRlcmF2b25kICZhbXA7IHZvb3JsaWNodGluZyByZWlzLjwvbGk+PC91bD4iLCJpY29uIjoiPHN2ZyB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnXCIgd2lkdGg9XCIxMDAlXCIgaGVpZ2h0PVwiMTAwJVwiIHZpZXdCb3g9XCIwIDAgMTc5MiAxNzkyXCI+PHBhdGggZmlsbD1cImluaGVyaXRcIiBkPVwiTTE2NzEgNTY2cTAgNDAtMjggNjhsLTcyNCA3MjQtMTM2IDEzNnEtMjggMjgtNjggMjh0LTY4LTI4bC0xMzYtMTM2LTM2Mi0zNjJxLTI4LTI4LTI4LTY4dDI4LTY4bDEzNi0xMzZxMjgtMjggNjgtMjh0NjggMjhsMjk0IDI5NSA2NTYtNjU3cTI4LTI4IDY4LTI4dDY4IDI4bDEzNiAxMzZxMjggMjggMjggNjh6XCIgLz48L3N2Zz4ifSx7InRpdGxlIjoiNSBKVU5JIDIwMTkiLCJkZXNjcmlwdGlvbiI6IjxwIGNsYXNzPVwicnRlQmxvY2tcIj5PcCA1IGp1bmkgPGEgdHlwZT1cInVybFwiIHRhcmdldD1cIl9ibGFua1wiIGhyZWY9XCJcIiBkYXRhLXJ1bnRpbWUtdXJsPVwiXCI+bW9ldCBqZSBvbSA3OjQ1ICdzIG9jaHRlbmRzIGJpaiBkZSBLTE0gSW5jaGVja2JhbGllIHZhbiB2ZXJ0cmVraGFsIDIgYWFud2V6aWcgemlqbi48L2E+IEplIGt1bnQgZG9sbGFycyBoYWxlbiA8YSB0eXBlPVwidXJsXCIgdGFyZ2V0PVwiX2JsYW5rXCIgaHJlZj1cIlwiIGRhdGEtcnVudGltZS11cmw9XCJcIj5uYSBkYXQgd2UgZG9vciBkZSBkb3VhbmUgaGVlbiB6aWpuIGdlZ2FhbiE8L2E+PC9wPjxicj48YnI+PHVsIGNsYXNzPVwicnRlQmxvY2sgZGVmYXVsdExpc3RcIj48bGk+MDc6NDUgKEFNUyk8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPkFhbndlemlnIHppam4gYmlqIEtMTSBJbmNoZWNrYmFsaWUgdmFuIFZlcnRyZWtoYWwgMjwvcD48YnI+PHVsIGNsYXNzPVwicnRlQmxvY2sgZGVmYXVsdExpc3RcIj48bGk+MTA6NTUgKEFNUylcdFx0wqA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPlZldHJlayB2bHVjaHQgREwwNDkgdmFuYWYgU2NoaXBob2wuPC9wPjxicj48dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT4xMzowOSAoTllDKVx0wqA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPkFhbmtvbXN0IEpGSyBBaXJwb3J0IE5ZQzwvcD48YnI+PHVsIGNsYXNzPVwicnRlQmxvY2sgZGVmYXVsdExpc3RcIj48bGk+MTQ6MDA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPkJ1cyBuYWFyIHZlcmJsaWpmcGxhYXRzPC9wPjxicj48dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT4xNTozMFx0XHTCoDwvbGk+PC91bD48cCBjbGFzcz1cInJ0ZUJsb2NrXCI+SW5jaGVja2VuIHZlcmJsaWpmcGxhYXRzPC9wPjxicj48dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT4xNzowMFx0XHTCoDwvbGk+PC91bD48cCBjbGFzcz1cInJ0ZUJsb2NrXCI+VGltZXMgU3F1YXJlIChOZWVtIGdlbGQgbWVlIG9tIGV0ZW4gdGUga3VubmVuIGhhbGVuLCBmcmlrYW5kZWxicm9vZGplcyBoZWJiZW4gemUgbmlldCk8L3A+PGJyPjx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPjE5OjAwXHRcdMKgPC9saT48L3VsPjxwIGNsYXNzPVwicnRlQmxvY2tcIj5Ub3Agb2YgdGhlIHJvY2s8L3A+PGJyPjx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPjIxOjAwXHRcdMKgPC9saT48L3VsPjxwIGNsYXNzPVwicnRlQmxvY2tcIj5UZXJ1ZyBuYWFyIHZlcmJsaWpmcGxhYXRzPC9wPjxicj4iLCJpY29uIjoiPHN2ZyB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnXCIgd2lkdGg9XCIxMDAlXCIgaGVpZ2h0PVwiMTAwJVwiIHZpZXdCb3g9XCIwIDAgMTc5MiAxNzkyXCI+PHBhdGggZmlsbD1cImluaGVyaXRcIiBkPVwiTTE2NzEgNTY2cTAgNDAtMjggNjhsLTcyNCA3MjQtMTM2IDEzNnEtMjggMjgtNjggMjh0LTY4LTI4bC0xMzYtMTM2LTM2Mi0zNjJxLTI4LTI4LTI4LTY4dDI4LTY4bDEzNi0xMzZxMjgtMjggNjgtMjh0NjggMjhsMjk0IDI5NSA2NTYtNjU3cTI4LTI4IDY4LTI4dDY4IDI4bDEzNiAxMzZxMjggMjggMjggNjh6XCIgLz48L3N2Zz4ifSx7InRpdGxlIjoiNiBKVU5JIDIwMTkiLCJkZXNjcmlwdGlvbiI6IjxwIGNsYXNzPVwicnRlQmxvY2tcIj5ab3JnIGRhdCBqZSBvcCB0aWpkIGtsYWFyc3RhYXQuPC9wPjxicj48dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT4wODozMFx0XHTCoDwvbGk+PC91bD48cCBjbGFzcz1cInJ0ZUJsb2NrXCI+T250YmlqdDwvcD48YnI+PHVsIGNsYXNzPVwicnRlQmxvY2sgZGVmYXVsdExpc3RcIj48bGk+MTA6MDAtMTI6MzBcdFx0wqA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPkZpZXRzZW4gaW4gQ2VudHJhbCBQYXJrIGVuIGx1bmNoZW48L3A+PGJyPjx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPjE0OjAwLTE5OjAwwqA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPk5hYXIgTGEgRmF5ZXR0ZcKgPC9wPjxicj48cCBjbGFzcz1cInJ0ZUJsb2NrXCI+KE5vZ21hYWxzOiBnYSBub29pdCBhbGxlZW4gZXJnZW5zIG5hYXJ0b2UuIEluIGdldmFsIHZhbiBub29kIGJlbGxlbiBvZiBuZWVtIGVlbiB0YXhpLik8L3A+PGJyPjx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPjE5OjAwLTIwOjAwwqA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPkV0ZW4gb25kZXJ3ZWcgbmFhciBvZiBiaWogQ29sb21idXMgQ2lyY2xlLjwvcD48YnI+PHVsIGNsYXNzPVwicnRlQmxvY2sgZGVmYXVsdExpc3RcIj48bGk+MjA6MDAtMjA6MzDCoDwvbGk+PC91bD48cCBjbGFzcz1cInJ0ZUJsb2NrXCI+VmVydHJlayBDb2xvbWJ1cyBDaXJjbGUgbmFhciB2ZXJibGlqZnBsYWF0czwvcD48YnI+PGJyPjxicj4iLCJpY29uIjoiPHN2ZyB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnXCIgd2lkdGg9XCIxMDAlXCIgaGVpZ2h0PVwiMTAwJVwiIHZpZXdCb3g9XCIwIDAgMTc5MiAxNzkyXCI+PHBhdGggZmlsbD1cImluaGVyaXRcIiBkPVwiTTE2NzEgNTY2cTAgNDAtMjggNjhsLTcyNCA3MjQtMTM2IDEzNnEtMjggMjgtNjggMjh0LTY4LTI4bC0xMzYtMTM2LTM2Mi0zNjJxLTI4LTI4LTI4LTY4dDI4LTY4bDEzNi0xMzZxMjgtMjggNjgtMjh0NjggMjhsMjk0IDI5NSA2NTYtNjU3cTI4LTI4IDY4LTI4dDY4IDI4bDEzNiAxMzZxMjggMjggMjggNjh6XCIgLz48L3N2Zz4ifSx7InRpdGxlIjoiNyBKVU5JIDIwMTkiLCJkZXNjcmlwdGlvbiI6Ijx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPjA4OjAwLTA5OjAwwqA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPk9udGJpanQ8L3A+PGJyPjx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPjA5OjAwLTEwOjAwwqA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPk5hYXIgQS9DIDEwM3JkIC0gRnVsbHRvbiBTdHJlZXQ8L3A+PGJyPjx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPjExOjAwLTEyOjMwwqA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPkdyb3VuZCBaZXJvICsgOS8xMSBNZW1vcmlhbCB0b3VyPC9wPjxicj48dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT4xMjo0NS0xMzozMMKgPC9saT48L3VsPjxwIGNsYXNzPVwicnRlQmxvY2tcIj5MdW5jaCBpbiBadWNjb3R0aSBQYXJrPC9wPjxicj48dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT4xNDowMC0xNTozMMKgPC9saT48L3VsPjxwIGNsYXNzPVwicnRlQmxvY2tcIj5XYWxsIFN0cmVldCBJbnNpZGVyIFRvdXIgKFN0YXJ0IGJpaiAxMiBXYWxsIFN0cmVldCwgdGVnZW5vdmVyIFN0b2NrIEV4Y2hhbmdlKTwvcD48YnI+PHVsIGNsYXNzPVwicnRlQmxvY2sgZGVmYXVsdExpc3RcIj48bGk+MTU6MzAtMTY6MDDCoDwvbGk+PC91bD48cCBjbGFzcz1cInJ0ZUJsb2NrXCI+TmFhciBkZSBCcm9va2x5biBCcmlkZ2U8L3A+PGJyPjx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPjE2OjAwLTE3OjAwwqA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPkJyb29rbHluIEJyaWRnZTwvcD48YnI+PHVsIGNsYXNzPVwicnRlQmxvY2sgZGVmYXVsdExpc3RcIj48bGk+MTg6MDAtMjA6MDDCoDwvbGk+PC91bD48cCBjbGFzcz1cInJ0ZUJsb2NrXCI+VGltZXMgU3F1YXJlPC9wPjxicj48dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT4yMDowMMKgPC9saT48L3VsPjxwIGNsYXNzPVwicnRlQmxvY2tcIj5UZXJ1ZyBuYWFyIHZlcmJsaWpmcGxhYXRzLjwvcD48YnI+PHAgY2xhc3M9XCJydGVCbG9ja1wiPkVyIGlzIGVlbiBtb2dlbGlqa2hlaWQgZGF0IHdpaiBkZXplIGF2b25kIGVlbiBBbWVyaWthYW5zZSBUaGVhdGVyc2hvdyBvZiBTcG9ydHdlZHN0cmlqZCBiaWp3b25lbi4gTWVlciBpbmZvcm1hdGllIGhpZXJvdmVyIHZvbGd0LjwvcD48YnI+IiwiaWNvbiI6IjxzdmcgeG1sbnM9XCJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Z1wiIHdpZHRoPVwiMTAwJVwiIGhlaWdodD1cIjEwMCVcIiB2aWV3Qm94PVwiMCAwIDE3OTIgMTc5MlwiPjxwYXRoIGZpbGw9XCJpbmhlcml0XCIgZD1cIk0xNjcxIDU2NnEwIDQwLTI4IDY4bC03MjQgNzI0LTEzNiAxMzZxLTI4IDI4LTY4IDI4dC02OC0yOGwtMTM2LTEzNi0zNjItMzYycS0yOC0yOC0yOC02OHQyOC02OGwxMzYtMTM2cTI4LTI4IDY4LTI4dDY4IDI4bDI5NCAyOTUgNjU2LTY1N3EyOC0yOCA2OC0yOHQ2OCAyOGwxMzYgMTM2cTI4IDI4IDI4IDY4elwiIC8+PC9zdmc+In0seyJ0aXRsZSI6IjggSlVOSSAyMDE5IiwiZGVzY3JpcHRpb24iOiI8dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT4wODowMCAtIDA5OjAwPC9saT48L3VsPjxwIGNsYXNzPVwicnRlQmxvY2tcIj5PbnRiaWp0PC9wPjxicj48dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT4wOTowMCAtIDEwOjAwPC9saT48L3VsPjxwIGNsYXNzPVwicnRlQmxvY2tcIj5OYWFyIEJhdHRlcnkgUGFyazwvcD48YnI+PHVsIGNsYXNzPVwicnRlQmxvY2sgZGVmYXVsdExpc3RcIj48bGk+MTE6MDA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPkJvb3QgbmFhciBoZXQgVnJpamhlaWRzYmVlbGQ8L3A+PGJyPjx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPjEyOjAwPC9saT48L3VsPjxwIGNsYXNzPVwicnRlQmxvY2tcIj5Cb290IG5hYXIgRWxsaXMgSXNsYW5kPC9wPjxicj48dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT4xNDozMDwvbGk+PC91bD48cCBjbGFzcz1cInJ0ZUJsb2NrXCI+Qm9vdCBuYWFyIEJhdHRlcnkgUGFyazwvcD48YnI+PHVsIGNsYXNzPVwicnRlQmxvY2sgZGVmYXVsdExpc3RcIj48bGk+MTU6MDAgLSAxNjowMDwvbGk+PC91bD48cCBjbGFzcz1cInJ0ZUJsb2NrXCI+TmFhciBCYXR0ZXJ5IFBhcmsgdG9lPC9wPjxicj48dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT4xNjowMDwvbGk+PC91bD48cCBjbGFzcz1cInJ0ZUJsb2NrXCI+UGFkIG5hYXIgTmV3IEplcnNleSArIHdhbmRlbGluZzwvcD48YnI+PHVsIGNsYXNzPVwicnRlQmxvY2sgZGVmYXVsdExpc3RcIj48bGk+MTg6MDA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPkRpbmVyIGJpaiBOZXdwb3J0IE1hbGw8L3A+IiwiaWNvbiI6IjxzdmcgeG1sbnM9XCJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Z1wiIHdpZHRoPVwiMTAwJVwiIGhlaWdodD1cIjEwMCVcIiB2aWV3Qm94PVwiMCAwIDE3OTIgMTc5MlwiPjxwYXRoIGZpbGw9XCJpbmhlcml0XCIgZD1cIk0xNjcxIDU2NnEwIDQwLTI4IDY4bC03MjQgNzI0LTEzNiAxMzZxLTI4IDI4LTY4IDI4dC02OC0yOGwtMTM2LTEzNi0zNjItMzYycS0yOC0yOC0yOC02OHQyOC02OGwxMzYtMTM2cTI4LTI4IDY4LTI4dDY4IDI4bDI5NCAyOTUgNjU2LTY1N3EyOC0yOCA2OC0yOHQ2OCAyOGwxMzYgMTM2cTI4IDI4IDI4IDY4elwiIC8+PC9zdmc+In0seyJ0aXRsZSI6IjkgSlVOSSAyMDE5IiwiZGVzY3JpcHRpb24iOiI8dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT4wNzozMCAtIDA4OjMwPC9saT48L3VsPjxwIGNsYXNzPVwicnRlQmxvY2tcIj5PbnRiaWp0ICsgT3BzbGFnPC9wPjxicj48dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT45OjAwPC9saT48L3VsPjxwIGNsYXNzPVwicnRlQmxvY2tcIj5OYWFyIG11c2V1bSB0b2U8L3A+PGJyPjx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPjEwOjAwIC0gMTI6MzA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPjxhIHZhbHVlPVwiaHR0cHM6Ly95b3V0dS5iZS9RLWdQcWZaSS1yOFwiIHR5cGU9XCJ1cmxcIiBocmVmPVwiaHR0cHM6Ly95b3V0dS5iZS9RLWdQcWZaSS1yOFwiIHRhcmdldD1cIl9ibGFua1wiIGRhdGEtcnVudGltZS11cmw9XCJodHRwczovL3lvdXR1LmJlL1EtZ1BxZlpJLXI4XCI+TXVzZXVtIG9mIE5hdHVyYWwgSGlzdG9yeTwvYT48L3A+PGJyPjx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPjEyOjMwIC0gMTM6MDA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPlRlcnVnIG5hYXIgdmVyYmxpamZwbGFhdHM8L3A+PGJyPjx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPjEzOjAwIC0gMTM6MzA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPkx1bmNoIGJpaiB2ZXJibGlqZnBsYWF0cyBlbiBiYWdhZ2UgdWl0IG9wc2xhZyBoYWxlbjwvcD48YnI+PHVsIGNsYXNzPVwicnRlQmxvY2sgZGVmYXVsdExpc3RcIj48bGk+MTY6MzA8L2xpPjwvdWw+PHAgY2xhc3M9XCJydGVCbG9ja1wiPlZlcnRyZWsgbmFhciBKRksgVmxpZWd2ZWxkIHZhbmFmIHZlcmJsaWpmcGxhYXRzPC9wPjxicj48dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT4yMjoxNTwvbGk+PC91bD48cCBjbGFzcz1cInJ0ZUJsb2NrXCI+VmVydHJlayB2bHVjaHQgS0w2NDQgdmFuYWYgSkZLPC9wPjxwIGNsYXNzPVwicnRlQmxvY2tcIj4oVm9vciB2bHVjaHR0cmFja2VyLCBnYSBuYWFyIGJvdmVuYWFuIGRlIHBhZ2luYSk8L3A+PGJyPiIsImljb24iOiI8c3ZnIHhtbG5zPVwiaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmdcIiB3aWR0aD1cIjEwMCVcIiBoZWlnaHQ9XCIxMDAlXCIgdmlld0JveD1cIjAgMCAxNzkyIDE3OTJcIj48cGF0aCBmaWxsPVwiaW5oZXJpdFwiIGQ9XCJNMTY3MSA1NjZxMCA0MC0yOCA2OGwtNzI0IDcyNC0xMzYgMTM2cS0yOCAyOC02OCAyOHQtNjgtMjhsLTEzNi0xMzYtMzYyLTM2MnEtMjgtMjgtMjgtNjh0MjgtNjhsMTM2LTEzNnEyOC0yOCA2OC0yOHQ2OCAyOGwyOTQgMjk1IDY1Ni02NTdxMjgtMjggNjgtMjh0NjggMjhsMTM2IDEzNnEyOCAyOCAyOCA2OHpcIiAvPjwvc3ZnPiJ9LHsidGl0bGUiOiIxMCBKVU5JIDIwMTkiLCJkZXNjcmlwdGlvbiI6Ijx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPjExOjM1PC9saT48L3VsPjxwIGNsYXNzPVwicnRlQmxvY2tcIj5BYW5rb21zdCB2bHVjaHQgS0w2NDQgb3AgQW1zdGVyZGFtIFNjaGlwaG9sIEFpcnBvcnQuIE9tIGRlIHZsdWNodCB0ZSB0cmFja2VuIGt1bnQgdSBib3ZlbmFhbiBkZSBwYWdpbmEgb3AgZGUgbGluayBkcnVra2VuLjwvcD4iLCJpY29uIjoiPHN2ZyB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnXCIgd2lkdGg9XCIxMDAlXCIgaGVpZ2h0PVwiMTAwJVwiIHZpZXdCb3g9XCIwIDAgMTc5MiAxNzkyXCI+PHBhdGggZmlsbD1cImluaGVyaXRcIiBkPVwiTTE2NzEgNTY2cTAgNDAtMjggNjhsLTcyNCA3MjQtMTM2IDEzNnEtMjggMjgtNjggMjh0LTY4LTI4bC0xMzYtMTM2LTM2Mi0zNjJxLTI4LTI4LTI4LTY4dDI4LTY4bDEzNi0xMzZxMjgtMjggNjgtMjh0NjggMjhsMjk0IDI5NSA2NTYtNjU3cTI4LTI4IDY4LTI4dDY4IDI4bDEzNiAxMzZxMjggMjggMjggNjh6XCIgLz48L3N2Zz4ifV0sImV4cGFuZEZpcnN0SXRlbSI6ZmFsc2UsImNvbGxhcHNlT3RoZXJzIjpmYWxzZSwibGF5b3V0Ijoicm91bmRlZEljb24ifQ=="> <ul class="accordion-wrapper roundedIcon  " data-first-expanded="false"> <li class="accordion-item"> <div class="accordion-title"> <div class="title-text"> <div>15 APRIL 2019</div> 
+</div> 
+ <div class="arrow-wrapper"> <div class="arrow"> <svg class="close" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1152 1792" style="background-color:inherit !important" fill="currentColor"> <path fill="inherit" d="M1075 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"></path> 
+</svg> 
+</div> 
+</div> 
+</div> 
+ <div class="accordion-description"> <div class="section"> <div class="section-inner"> <ul class="rteBlock defaultList"> <li>Ouderavond &amp; voorlichting reis.</li> 
+</ul> 
+</div> 
+</div> 
+</div> 
+</li> 
+ <li class="accordion-item"> <div class="accordion-title"> <div class="title-text"> <div>5 JUNI 2019</div> 
+</div> 
+ <div class="arrow-wrapper"> <div class="arrow"> <svg class="close" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1152 1792" style="background-color:inherit !important" fill="currentColor"> <path fill="inherit" d="M1075 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"></path> 
+</svg> 
+</div> 
+</div> 
+</div> 
+ <div class="accordion-description"> <div class="section"> <div class="section-inner"> <p class="rteBlock">Op 5 juni <a type="url" target="_blank" href="" data-runtime-url="">moet je om 7:45 's ochtends bij de KLM Incheckbalie van vertrekhal 2 aanwezig zijn.</a> 
+Je kunt dollars halen <a type="url" target="_blank" href="" data-runtime-url="">na dat we door de douane heen zijn gegaan!</a> 
+</p> 
+<br/><br/> <ul class="rteBlock defaultList"> <li>07:45 (AMS)</li> 
+</ul> 
+ <p class="rteBlock">Aanwezig zijn bij KLM Incheckbalie van Vertrekhal 2</p> 
+<br/> <ul class="rteBlock defaultList"> <li>10:55 (AMS)		&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Vetrek vlucht DL049 vanaf Schiphol.</p> 
+<br/> <ul class="rteBlock defaultList"> <li>13:09 (NYC)	&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Aankomst JFK Airport NYC</p> 
+<br/> <ul class="rteBlock defaultList"> <li>14:00</li> 
+</ul> 
+ <p class="rteBlock">Bus naar verblijfplaats</p> 
+<br/> <ul class="rteBlock defaultList"> <li>15:30		&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Inchecken verblijfplaats</p> 
+<br/> <ul class="rteBlock defaultList"> <li>17:00		&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Times Square (Neem geld mee om eten te kunnen halen, frikandelbroodjes hebben ze niet)</p> 
+<br/> <ul class="rteBlock defaultList"> <li>19:00		&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Top of the rock</p> 
+<br/> <ul class="rteBlock defaultList"> <li>21:00		&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Terug naar verblijfplaats</p> 
+<br/></div> 
+</div> 
+</div> 
+</li> 
+ <li class="accordion-item"> <div class="accordion-title"> <div class="title-text"> <div>6 JUNI 2019</div> 
+</div> 
+ <div class="arrow-wrapper"> <div class="arrow"> <svg class="close" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1152 1792" style="background-color:inherit !important" fill="currentColor"> <path fill="inherit" d="M1075 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"></path> 
+</svg> 
+</div> 
+</div> 
+</div> 
+ <div class="accordion-description"> <div class="section"> <div class="section-inner"> <p class="rteBlock">Zorg dat je op tijd klaarstaat.</p> 
+<br/> <ul class="rteBlock defaultList"> <li>08:30		&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Ontbijt</p> 
+<br/> <ul class="rteBlock defaultList"> <li>10:00-12:30		&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Fietsen in Central Park en lunchen</p> 
+<br/> <ul class="rteBlock defaultList"> <li>14:00-19:00&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Naar La Fayette&nbsp;</p> 
+<br/> <p class="rteBlock">(Nogmaals: ga nooit alleen ergens naartoe. In geval van nood bellen of neem een taxi.)</p> 
+<br/> <ul class="rteBlock defaultList"> <li>19:00-20:00&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Eten onderweg naar of bij Colombus Circle.</p> 
+<br/> <ul class="rteBlock defaultList"> <li>20:00-20:30&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Vertrek Colombus Circle naar verblijfplaats</p> 
+<br/><br/><br/></div> 
+</div> 
+</div> 
+</li> 
+ <li class="accordion-item"> <div class="accordion-title"> <div class="title-text"> <div>7 JUNI 2019</div> 
+</div> 
+ <div class="arrow-wrapper"> <div class="arrow"> <svg class="close" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1152 1792" style="background-color:inherit !important" fill="currentColor"> <path fill="inherit" d="M1075 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"></path> 
+</svg> 
+</div> 
+</div> 
+</div> 
+ <div class="accordion-description"> <div class="section"> <div class="section-inner"> <ul class="rteBlock defaultList"> <li>08:00-09:00&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Ontbijt</p> 
+<br/> <ul class="rteBlock defaultList"> <li>09:00-10:00&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Naar A/C 103rd - Fullton Street</p> 
+<br/> <ul class="rteBlock defaultList"> <li>11:00-12:30&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Ground Zero + 9/11 Memorial tour</p> 
+<br/> <ul class="rteBlock defaultList"> <li>12:45-13:30&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Lunch in Zuccotti Park</p> 
+<br/> <ul class="rteBlock defaultList"> <li>14:00-15:30&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Wall Street Insider Tour (Start bij 12 Wall Street, tegenover Stock Exchange)</p> 
+<br/> <ul class="rteBlock defaultList"> <li>15:30-16:00&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Naar de Brooklyn Bridge</p> 
+<br/> <ul class="rteBlock defaultList"> <li>16:00-17:00&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Brooklyn Bridge</p> 
+<br/> <ul class="rteBlock defaultList"> <li>18:00-20:00&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Times Square</p> 
+<br/> <ul class="rteBlock defaultList"> <li>20:00&nbsp;</li> 
+</ul> 
+ <p class="rteBlock">Terug naar verblijfplaats.</p> 
+<br/> <p class="rteBlock">Er is een mogelijkheid dat wij deze avond een Amerikaanse Theatershow of Sportwedstrijd bijwonen. Meer informatie hierover volgt.</p> 
+<br/></div> 
+</div> 
+</div> 
+</li> 
+ <li class="accordion-item"> <div class="accordion-title"> <div class="title-text"> <div>8 JUNI 2019</div> 
+</div> 
+ <div class="arrow-wrapper"> <div class="arrow"> <svg class="close" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1152 1792" style="background-color:inherit !important" fill="currentColor"> <path fill="inherit" d="M1075 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"></path> 
+</svg> 
+</div> 
+</div> 
+</div> 
+ <div class="accordion-description"> <div class="section"> <div class="section-inner"> <ul class="rteBlock defaultList"> <li>08:00 - 09:00</li> 
+</ul> 
+ <p class="rteBlock">Ontbijt</p> 
+<br/> <ul class="rteBlock defaultList"> <li>09:00 - 10:00</li> 
+</ul> 
+ <p class="rteBlock">Naar Battery Park</p> 
+<br/> <ul class="rteBlock defaultList"> <li>11:00</li> 
+</ul> 
+ <p class="rteBlock">Boot naar het Vrijheidsbeeld</p> 
+<br/> <ul class="rteBlock defaultList"> <li>12:00</li> 
+</ul> 
+ <p class="rteBlock">Boot naar Ellis Island</p> 
+<br/> <ul class="rteBlock defaultList"> <li>14:30</li> 
+</ul> 
+ <p class="rteBlock">Boot naar Battery Park</p> 
+<br/> <ul class="rteBlock defaultList"> <li>15:00 - 16:00</li> 
+</ul> 
+ <p class="rteBlock">Naar Battery Park toe</p> 
+<br/> <ul class="rteBlock defaultList"> <li>16:00</li> 
+</ul> 
+ <p class="rteBlock">Pad naar New Jersey + wandeling</p> 
+<br/> <ul class="rteBlock defaultList"> <li>18:00</li> 
+</ul> 
+ <p class="rteBlock">Diner bij Newport Mall</p> 
+</div> 
+</div> 
+</div> 
+</li> 
+ <li class="accordion-item"> <div class="accordion-title"> <div class="title-text"> <div>9 JUNI 2019</div> 
+</div> 
+ <div class="arrow-wrapper"> <div class="arrow"> <svg class="close" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1152 1792" style="background-color:inherit !important" fill="currentColor"> <path fill="inherit" d="M1075 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"></path> 
+</svg> 
+</div> 
+</div> 
+</div> 
+ <div class="accordion-description"> <div class="section"> <div class="section-inner"> <ul class="rteBlock defaultList"> <li>07:30 - 08:30</li> 
+</ul> 
+ <p class="rteBlock">Ontbijt + Opslag</p> 
+<br/> <ul class="rteBlock defaultList"> <li>9:00</li> 
+</ul> 
+ <p class="rteBlock">Naar museum toe</p> 
+<br/> <ul class="rteBlock defaultList"> <li>10:00 - 12:30</li> 
+</ul> 
+ <p class="rteBlock"> <a value="https://youtu.be/Q-gPqfZI-r8" type="url" href="https://youtu.be/Q-gPqfZI-r8" target="_blank" data-runtime-url="https://youtu.be/Q-gPqfZI-r8">Museum of Natural History</a> 
+</p> 
+<br/> <ul class="rteBlock defaultList"> <li>12:30 - 13:00</li> 
+</ul> 
+ <p class="rteBlock">Terug naar verblijfplaats</p> 
+<br/> <ul class="rteBlock defaultList"> <li>13:00 - 13:30</li> 
+</ul> 
+ <p class="rteBlock">Lunch bij verblijfplaats en bagage uit opslag halen</p> 
+<br/> <ul class="rteBlock defaultList"> <li>16:30</li> 
+</ul> 
+ <p class="rteBlock">Vertrek naar JFK Vliegveld vanaf verblijfplaats</p> 
+<br/> <ul class="rteBlock defaultList"> <li>22:15</li> 
+</ul> 
+ <p class="rteBlock">Vertrek vlucht KL644 vanaf JFK</p> 
+ <p class="rteBlock">(Voor vluchttracker, ga naar bovenaan de pagina)</p> 
+<br/></div> 
+</div> 
+</div> 
+</li> 
+ <li class="accordion-item"> <div class="accordion-title"> <div class="title-text"> <div>10 JUNI 2019</div> 
+</div> 
+ <div class="arrow-wrapper"> <div class="arrow"> <svg class="close" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1152 1792" style="background-color:inherit !important" fill="currentColor"> <path fill="inherit" d="M1075 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"></path> 
+</svg> 
+</div> 
+</div> 
+</div> 
+ <div class="accordion-description"> <div class="section"> <div class="section-inner"> <ul class="rteBlock defaultList"> <li>11:35</li> 
+</ul> 
+ <p class="rteBlock">Aankomst vlucht KL644 op Amsterdam Schiphol Airport. Om de vlucht te tracken kunt u bovenaan de pagina op de link drukken.</p> 
+</div> 
+</div> 
+</div> 
+</li> 
+</ul> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="dmFooterContainer"> <div id="fcontainer" class="u_fcontainer f_hcontainer dmFooter p_hfcontainer"> <div dm:templateorder="250" class="dmFooterResp generalFooter" id="1943048428"> <div class="u_1686005289 dmRespRow" style="text-align: center;" id="1686005289"> <div class="dmRespColsWrapper" id="1837856251"> <div class="u_1188157081 dmRespCol small-12 medium-12 large-12" id="1188157081"> <div class="u_1252117155 dmNewParagraph" data-dmtmpl="true" id="1252117155" data-uialign="center" style="transition: opacity 1s ease-in-out;"><div style="text-align: center;"><span style="background-color: rgba(0, 0, 0, 0);"><font style="color: rgb(246, 246, 246);"></font></span></div><span style="font-weight: 200;"><font style="color: rgb(236, 236, 236);"><div style="text-align: center;">New York Reis 2019</div><div style="text-align: center;">Gebouwd door Milan omdat niemand anders zich vrijwillig aanbood</div></font></span><div style="text-align: center;"><font style="color: rgb(246, 246, 246);"></font></div></div></div> 
+</div> 
+</div> 
+</div> 
+ <div id="1236746004" dmle_extension="powered_by" data-element-type="powered_by" wr="false" icon="true" surround="false" data-dmtmpl="true"></div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+
+            </div>
+        </div>
+<!--  Add full CSS and Javascript before the close tag of the body if needed -->
+<script type="text/javascript">
+(function() {
+ 	var campaign = (/utm_campaign=([^&]*)/).exec(window.location.search);
+ 	
+ 	if (campaign && campaign != null && campaign.length > 1) {
+ 		campaign = campaign[1]; 		
+ 		document.cookie = "_dm_rt_campaign=" + campaign + ";expires=" + new Date().getTime() + 24*60*60*1000 + ";domain=" + window.location.hostname + ";path=/";
+ 	}
+}());
+</script>
+<script type="text/javascript">
+  var _dm_gaq = {};
+  var _gaq = _gaq || [];
+  var _dm_insite = [];
+
+  
+  _dm_gaq.siteAlias = '0ac84338';
+  _dm_gaq.systemAggregatedGaqID = 'UA-7265702-9';
+  _dm_gaq.externalGaqID = '';
+  
+  _gaq.push(['_gat._forceSSL']);
+  
+  if(_dm_gaq.systemAggregatedGaqID && (_dm_gaq.systemAggregatedGaqID != _dm_gaq.systemGaqID)){
+     // track aggregated account
+    _gaq.push(['b._setAccount', _dm_gaq.systemAggregatedGaqID]);
+    _gaq.push(['b._setAllowLinker', true]);
+    _gaq.push(['b._setVar', _dm_gaq.siteAlias]);
+    
+    _gaq.push (['b._gat._anonymizeIp']);
+    
+    _gaq.push(['b._setCustomVar', 1, 'product', 'DM_DIRECT',  2 ]);
+    _gaq.push(['b._setCustomVar', 2, 'plan', 'BUSINESS_PLUS',  2 ]);
+    _gaq.push(['b._setCustomVar', 3, 'dfooter', 'false',  2 ]);
+    _gaq.push(['b._setCustomVar', 4, 'sitetype', '1',  2 ]);
+    _gaq.push(['b._setCustomVar', 5, 'pwaEnabled', 'true',  2 ]);
+
+      _gaq.push(['b._trackPageview' ]);
+    pushInsiteImpressions('b._trackEvent');
+   }
+       
+   if(_dm_gaq.externalGaqID && _dm_gaq.externalGaqID!= '') {    	    	
+     _gaq.push(['c._setAccount', _dm_gaq.externalGaqID]);                      
+     _gaq.push(['c._setVar', _dm_gaq.siteAlias]);
+     _gaq.push(['c._setDomainName', 'multiscreensite.com']);
+     _gaq.push(['c._setAllowLinker', true]);
+     _gaq.push(['c._trackPageview' ]);
+     pushInsiteImpressions('c._trackEvent');
+   }
+
+   function pushInsiteImpressions(category) {
+   	$.each(_dm_insite, function(idx, rule) {
+   		_gaq.push([ category, 'insite_impression' , _dm_gaq.siteAlias, rule.ruleType + '__' + rule.ruleId, ]);
+   	});
+   }
+(function() {
+	var ga = document.createElement('script');
+	ga.type = 'text/javascript';
+	ga.async = true;
+  
+	ga.src = 'https://ssl.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(ga, s);
+})();
+  	
+;(function(p,l,o,w,i,n,g){if(!p[i]){p.GlobalSnowplowNamespace=p.GlobalSnowplowNamespace||[];
+p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)
+};p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;
+n.src=w;g.parentNode.insertBefore(n,g)}}(window,document,"script","//d32hwlnfiv2gyn.cloudfront.net/sp-2.0.0-dm-0.1.min.js","snowplow"));
+window.dmsnowplow  = window.snowplow;
+
+dmsnowplow('newTracker', 'cf', 'd32hwlnfiv2gyn.cloudfront.net', { // Initialise a tracker
+  appId: '0ac84338'
+});
+
+dmsnowplow('trackPageView')
+$.each(_dm_insite, function(idx, rule) {
+	//('trackStructEvent', 'category','action','label','property','value');
+			// Specifically in popup only the client knows if it is shown or not so we don't always want to track its impression here
+	        // the tracking is in popup.js
+			if (rule.actionName !== "popup") {
+                dmsnowplow('trackStructEvent', 'insite', 'impression', rule.ruleType, rule.ruleId);
+            }
+ 			$(document).ready(function(){
+ 				$.DM.events.trigger('event-ruleTriggered', {value: rule})}
+ 			);
+ 		});
+   </script>
+
+<div style="display:none;" id="P6iryBW0Wu"></div>
+
+<!-- photoswipe markup -->
+
+
+
+
+
+
+
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- note these also must be called after ajax -->
+<script>
+    var dmForceShare = false;
+    if (dmForceShare || $("#shareSection").length > 0 || $(".dmShare").length > 0) {
+        dmLoadShare();
+    }
+
+    function dmLoadShare() {
+        /* google plus shares */
+        $.ajax({
+            url: "https://apis.google.com/js/plusone.js", dataType: "script", success: function () {
+            }
+        });
+        /* linked in shares */
+        $.ajax({
+            url: "https://platform.linkedin.com/in.js", dataType: "script", success: function () {
+            }
+        });
+        /* Twitter Shares */
+        $.ajax({
+            url: "https://platform.twitter.com/widgets.js", dataType: "script", success: function () {
+            }
+        });
+    }
+</script>
+<div id="fb-root"
+        data-locale="en"></div>
+
+<!-- Alias: 0ac84338 -->
+<div class="dmPopupMask" id="dmPopupMask"></div>
+<div id="dmPopup" class="dmPopup">
+	<div class="dmPopupCloseWrapper"> <div class="dmPopupClose dm-icon-x_close_popup oneIcon" onclick="dmHidePopup(event);"></div> </div> 
+ 	<div class="dmPopupTitle"> <span></span> Share by:</div> 
+	<div class="data"></div>
+</div><script>
+// Collects client data and updates cookies used by smart sites
+var expireDays = 365,visitLength = 30 * 60000;
+$.setCookie("dm_timezone_offset", (new Date()).getTimezoneOffset(), expireDays);
+function setSmartSiteCookies() {
+	setSmartSiteCookiesInternal("dm_this_page_view","dm_last_page_view","dm_total_visits","dm_last_visit");
+}
+$.DM.events.on("afterAjax", setSmartSiteCookies);
+setSmartSiteCookies();
+</script>
+<script type="text/javascript">
+    $.extend(Parameters,{
+        AjaxContainer : "div.dmBody",
+        WrappingContainer : "div.dmOuter",
+        HomeUrl : "https://nych4x.multiscreensite.com/",
+        AccountUUID: "0e0dd025418d42d1b6799aea0ee5a340",
+        SiteAlias : "0ac84338",
+        SiteId : "1415821",
+        SiteType : eval(Base64.decode("J0RVREFPTkUn")),
+        ExternalUid: null,
+        IsSEOFriendlyLinks : true,
+        IsSiteMultilingual: false,
+        InitialPostAlias: '',
+        InitialPageAlias : "rooms",
+        InitialEncodedPageAlias : "cm9vbXM=",
+        IsFromScratch : "false",
+        CurrentPageUrl : "",
+        IsCurrentHomePage : false,
+        classicLink : "",
+         AllowAjax : true,
+        AfterAjaxCommand : null,
+        HomeLinkText:"Back To Home",
+        UseGalleryModule : false,
+        CurrentThemeName : "Layout Theme",
+        ThemeVersion : "750",
+        DefaultPageAlias : "",
+        RemoveDID : true,
+         LayoutVariationID : {desktop : 5},
+		LayoutID : {desktop : 6},
+		WidgetStyleID : null,
+		IsHeaderFixed: false,
+		IsHeaderSkinny: false,
+		IsBfs: true,
+		LayoutParams : {_manifestId : 10600,_device : "desktop"},
+    		StorePageAlias: "null",
+        StorePath: "",
+        StoreId: "null",
+        StoreVersion: 0,
+    		StoreBaseUrl: "",
+        StoreCleanUrl:true,
+    		StoreDisableScrolling: true,
+    		NotificationSubDomain: "null",
+        HasCustomDomain: false,
+    		showCookieNotification: false,
+		cookiesNotificationMarkup: 'null',
+        translatedPageUrl: '',
+        isFastMigrationSite: false,
+        sidebarPosition: 'NA',
+        currentLanguage: "en",
+        NavItems: "W3sidGl0bGUiOiJIT01FIiwiYWxpYXMiOiJob21lIiwicGF0aCI6Ii8iLCJpbk5hdmlnYXRpb24iOnRydWUsInN1Yk5hdiI6W119LHsidGl0bGUiOiJBTEdFTUVORSBJTkZPUk1BVElFIiwiYWxpYXMiOiJyb29tcyIsInBhdGgiOiIvcm9vbXMiLCJpbk5hdmlnYXRpb24iOnRydWUsInN1Yk5hdiI6W119LHsidGl0bGUiOiJQTEFDRVMiLCJhbGlhcyI6InNwYSIsInBhdGgiOiIvc3BhIiwiaW5OYXZpZ2F0aW9uIjp0cnVlLCJzdWJOYXYiOltdfSx7InRpdGxlIjoiVFJBTlNQT1JUIiwiYWxpYXMiOiJ0cmFuc3BvcnQiLCJwYXRoIjoiL3RyYW5zcG9ydCIsImluTmF2aWdhdGlvbiI6dHJ1ZSwic3ViTmF2IjpbXX0seyJ0aXRsZSI6IkZPT0QiLCJhbGlhcyI6ImxvY2F0aW9uIiwicGF0aCI6Ii9sb2NhdGlvbiIsImluTmF2aWdhdGlvbiI6dHJ1ZSwic3ViTmF2IjpbeyJ0aXRsZSI6IlJFU1RBVVJBTlRTIiwiYWxpYXMiOiJyZXN0YXVyYW50IiwicGF0aCI6Ii9yZXN0YXVyYW50IiwiaW5OYXZpZ2F0aW9uIjp0cnVlLCJzdWJOYXYiOltdfSx7InRpdGxlIjoiRkFTVCBGT09EIiwiYWxpYXMiOiJsb2NhdGlvbiNjb250YWN0dXMiLCJwYXRoIjoiL2xvY2F0aW9uI2NvbnRhY3R1cyIsImluTmF2aWdhdGlvbiI6dHJ1ZSwic3ViTmF2IjpbXX1dfSx7InRpdGxlIjoiU1BPUlRTIiwiYWxpYXMiOiJzcG9ydHMiLCJwYXRoIjoiL3Nwb3J0cyIsImluTmF2aWdhdGlvbiI6dHJ1ZSwic3ViTmF2IjpbXX0seyJ0aXRsZSI6IkJBU0tFVEJBTEwiLCJhbGlhcyI6ImJhc2tldGJhbGwiLCJwYXRoIjoiL2Jhc2tldGJhbGwiLCJpbk5hdmlnYXRpb24iOmZhbHNlLCJzdWJOYXYiOltdfSx7InRpdGxlIjoiQkFTRUJBTEwiLCJhbGlhcyI6ImJhc2ViYWxsIiwicGF0aCI6Ii9iYXNlYmFsbCIsImluTmF2aWdhdGlvbiI6ZmFsc2UsInN1Yk5hdiI6W119LHsidGl0bGUiOiJNT1ZJRVMvVFYiLCJhbGlhcyI6Im1vdmllcy10diIsInBhdGgiOiIvbW92aWVzLXR2IiwiaW5OYXZpZ2F0aW9uIjp0cnVlLCJzdWJOYXYiOltdfSx7InRpdGxlIjoiQ09OVEFDVC9JTkZPIiwiYWxpYXMiOiJtb3JlLWluZm9ybWF0aW9uIiwicGF0aCI6Ii9tb3JlLWluZm9ybWF0aW9uIiwiaW5OYXZpZ2F0aW9uIjp0cnVlLCJzdWJOYXYiOltdfV0=",
+		errors: {
+			general: 'There was an error connecting to the page.<br/> Make sure you are not offline.',
+				password: 'Incorrect name/password combination',
+			tryAgain: 'Try again'
+		}
+    });
+    $.extend(Parameters.NavigationAreaParams,{
+        ShowBackToHomeOnInnerPages : true,
+        NavbarSize : 4,
+        NavbarLiveHomePage : "https://nych4x.multiscreensite.com/",
+        BlockContainerSelector : ".dmBody",
+        NavbarSelector : "#dmNav:has(a)",
+        SubNavbarSelector : "#subnav_main"
+    });
+    $.extend(Parameters.LayoutParams, {_navigationAnimationStyle : 'slide'});
+    
+    Parameters.NavigationAreaParams.MoreButtonText = 'MORE';
+    
+    Parameters.NavigationAreaParams.LessButtonText = 'LESS';
+    Parameters.HomeLinkText = 'Home';
+    </script>
+
+<script>
+
+    jQuery(window).load(function () {
+        try {
+            jQuery.DM.updateIOSHeight();
+        } catch(e){};
+    });
+</script>
+<script>
+    dmAPI.loadScript('https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js', function() {
+        dmAPI.runOnReady('lozadInit', function() {
+            window.document.querySelectorAll('img.lazy').forEach(function(img) {
+                img.addEventListener('load', function(event) {
+                    var img = event.target;
+                    img.style.filter = 'blur(0)';
+                    setTimeout(function() {
+                    	$(img).closest('.imageWidget').addClass('lazyLoaded');
+                    }, 250)
+                });
+			});
+            lozad('.lazy', {
+				threshold: 0.1,
+				loaded: function(element) {
+					if (element.getAttribute('data-background-image')) {
+						element.style.setProperty('background-image', "url('" + element.getAttribute('data-background-image') + "')", "important");
+					}
+				}
+			}).observe();
+        });
+	});
+</script>
+<!--  End Script tags -->
+
+<!--  Site Wide Html Markup -->
+<!--  Site Wide Html Markup -->
+
+</body>
+</html>
+<!--[d1-run-as-0e7c4054e2e0d202a, 2019-04-14 21:42:42]-->

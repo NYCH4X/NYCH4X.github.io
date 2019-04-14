@@ -1,0 +1,4 @@
+# Sitemap is also available on /sitemap.xml
+Sitemap: http://new_yorkreis_2019.multiscreensite.com/sitemap.xml
+User-agent: *
+
